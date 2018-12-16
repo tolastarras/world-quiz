@@ -1,18 +1,28 @@
 <template>
   <div class="jumbotron text-center">
     <div class="container">
-      <h1>Learn the World Quiz</h1>
+      <h1>Take the World Quiz</h1>
       <h4 class="mb-5">Test your knowledge!</h4>
     </div>
     <div class="bottom">
-      <h3 class="text-light">Capitals of the World</h3>
+      <h3 class="text-light">Capitals of {{ continent }}</h3>
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    continent () {
+      let continent = this.$store.getters.getContinent.continent
+ 
+      if (continent.toLowerCase() === 'world') {
+        return 'the ' + continent
+      }
 
+      return continent
+    }
+  }
 }
 </script>
 

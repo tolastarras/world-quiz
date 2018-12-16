@@ -8,6 +8,15 @@
   </div>
 </template>
 
+<script>
+export default {
+  created () {
+    this.$store.dispatch('changeContinent', { continent: 'World' })
+  }
+}
+</script>
+
+
 <style lang="scss">
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
