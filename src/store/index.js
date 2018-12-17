@@ -1,6 +1,8 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import * as types from './mutation-types'
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -23,15 +25,15 @@ export default new Vuex.Store({
     ]
   },
   mutations: {
-    updateContinent (state, payload) { state.continent = payload },
-    updateCategory (state, payload) { state.category = payload }
+    [types.UPDATE_CONTINENT] (state, payload) { state.continent = payload },
+    [types.UPDATE_CATEGORY] (state, payload) { state.category = payload }
   },
   actions: {
     changeContinent ({ commit }, payload) {
-      commit('updateContinent', payload)
+      commit('UPDATE_CONTINENT', payload)
     },
     changeCategory ({ commit }, payload) {
-      commit('updateCategory', payload)
+      commit('UPDATE_CATEGORY', payload)
     }
   },
   getters: {
