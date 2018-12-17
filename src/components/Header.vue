@@ -5,7 +5,7 @@
       <h4 class="mb-5">Test your knowledge!</h4>
     </div>
     <div class="bottom">
-      <h3 class="text-light">Capitals of {{ continent }}</h3>
+      <h3 class="text-light">{{ category }} of {{ continent }}</h3>
     </div>
   </div>
 </template>
@@ -14,13 +14,16 @@
 export default {
   computed: {
     continent () {
-      let continent = this.$store.getters.getContinent.continent
- 
+      let continent = this.$store.getters.continent
+
       if (continent.toLowerCase() === 'world') {
         return 'the ' + continent
       }
 
       return continent
+    },
+    category () {
+      return this.$store.getters.category
     }
   }
 }

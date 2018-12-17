@@ -11,11 +11,11 @@
 <script>
 export default {
   created () {
-    this.$store.dispatch('changeContinent', { continent: 'World' })
+    this.$store.dispatch('changeContinent', 'World')
+    this.$store.dispatch('changeCategory', 'Capitals')
   }
 }
 </script>
-
 
 <style lang="scss">
 #app {
@@ -26,19 +26,24 @@ export default {
   color: #2c3e50;
 }
 #nav {
-  padding: 30px;
-  visibility: hidden;
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
+  display: none;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+.dropdown-menu {
+  li {
+    color: #eee;
+    margin: 0 8px;
+    padding: 5px 0;
+    border-bottom: 1px solid #ddd;
 
-    &.router-link-exact-active {
-      color: #42b983;
+    &:hover {
+      color: #fff;
+      cursor: pointer;
+    }
+
+    &:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
     }
   }
 }

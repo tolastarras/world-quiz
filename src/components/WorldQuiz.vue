@@ -2,9 +2,9 @@
   <div class="content my-5">
     <div class="text-center">
       <button-continents />
-      <button-capitals />
+      <button-categories />
     </div>
-    <hr>
+
     <div class="text-center">
       <div class="anchor" id="question"></div>
       <div id="notifications"></div>
@@ -36,13 +36,13 @@
 <script>
 import ScoreBoard from './ScoreBoard'
 import ButtonContinents from './ButtonContinents'
-import ButtonCapitals from './ButtonCapitals'
+import ButtonCategories from './ButtonCategories'
 
 export default {
   components: {
     ScoreBoard,
     ButtonContinents,
-    ButtonCapitals
+    ButtonCategories
   }
 }
 </script>
@@ -61,15 +61,11 @@ ul {
   padding: 4px;
   line-height: 1.4;
   background-color: #fff;
-  border: 1px solid #ddd;
   border-radius: 0;
-  -webkit-transition: all .2s ease-in-out;
   transition: all .2s ease-in-out;
-  display: inline-block;
-  max-width: 100%;
-  width: 128px;
-  height: 96px;
-  border-radius: 2px;
-  margin-bottom: 10.5px;
+  // display: inline-block;
+  max-width: 14%;
+  // width: 128px;
+  // height: 96px;
 }
 </style>

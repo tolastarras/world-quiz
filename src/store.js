@@ -5,17 +5,39 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    continent: null
+    continent: null,
+    category: null,
+    continents: [
+      'World',
+      'Africa',
+      'Asia',
+      'Europe',
+      'North America',
+      'South America',
+      'Oceania'
+    ],
+    categories: [
+      'Flags',
+      'Capitals',
+      'Countries'
+    ]
   },
   mutations: {
-    changeContinent: (state, payload) => state.continent = payload
+    updateContinent (state, payload) { state.continent = payload },
+    updateCategory (state, payload) { state.category = payload }
   },
   actions: {
     changeContinent ({ commit }, payload) {
-      commit('changeContinent', payload)
+      commit('updateContinent', payload)
+    },
+    changeCategory ({ commit }, payload) {
+      commit('updateCategory', payload)
     }
   },
   getters: {
-    getContinent: state => state.continent
+    continent: state => state.continent,
+    continents: state => state.continents,
+    category: state => state.category,
+    categories: state => state.categories
   }
 })
