@@ -14,14 +14,12 @@ export default new Vuex.Store({
       'Africa',
       'Asia',
       'Europe',
-      'North America',
-      'South America',
+      'America',
       'Oceania'
     ],
     categories: [
       'Flags',
-      'Capitals',
-      'Countries'
+      'Capitals'
     ]
   },
   mutations: {

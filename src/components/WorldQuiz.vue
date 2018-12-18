@@ -9,23 +9,12 @@
       <div class="anchor" id="question"></div>
       <div id="notifications"></div>
 
-      <h2>What's the capital of <strong>Netherlands</strong>?</h2>
-      <img class="flag-question my-4" src="https://lipis.github.io/flag-icon-css/flags/4x3/nl.svg">
+      <h2 class="mt-5">What's the capital of <strong>{{ country.name }}</strong>?</h2>
+      <img class="flag my-5" :src="country.flag">
 
       <div class="row">
         <div class="choices offset-md-4 col-md-4">
-          <a class="btn btn-primary btn-block btn-loading" data-loading-text="Please wait..." href="/answer/capital/6000004/ag9zfmZsYWctaWNvbi1jc3NyEAsSB0NvdW50cnkYhJvuAgw/" rel="nofollow">
-            Amsterdam
-          </a>
-          <a class="btn btn-primary btn-block btn-loading" data-loading-text="Please wait..." href="/answer/capital/6000004/ag9zfmZsYWctaWNvbi1jc3NyDwsSB0NvdW50cnkYlYtADA/" rel="nofollow">
-            Suva
-          </a>
-          <a class="btn btn-primary btn-block btn-loading" data-loading-text="Please wait..." href="/answer/capital/6000004/ag9zfmZsYWctaWNvbi1jc3NyEAsSB0NvdW50cnkYwZ-rAww/" rel="nofollow">
-            Brasília
-          </a>
-          <a class="btn btn-primary btn-block btn-loading" data-loading-text="Please wait..." href="/answer/capital/6000004/ag9zfmZsYWctaWNvbi1jc3NyEAsSB0NvdW50cnkYtYXwAgw/" rel="nofollow">
-            Kigali
-          </a>
+          <a :key="choice.name" v-for="choice in choices" class="btn btn-primary btn-block text-light">{{ choice.capital }}</a>
         </div>
       </div>
       <score-board />
@@ -34,15 +23,62 @@
 </template>
 
 <script>
+import Axios from 'axios'
+
 import ScoreBoard from './ScoreBoard'
 import ButtonContinents from './ButtonContinents'
 import ButtonCategories from './ButtonCategories'
 
 export default {
+  data () {
+    return {
+      country: {},
+      choices: [],
+      records: []
+    }
+  },
   components: {
     ScoreBoard,
     ButtonContinents,
     ButtonCategories
+  },
+  mounted () {
+    if (!localStorage.getItem('countries')) {
+      Axios.get('https://restcountries.eu/rest/v2/all?fields=name;region;flag;capital')
+        .then(response => {
+          localStorage.setItem('countries', JSON.stringify(response.data))
+        })
+    } else {
+      console.log('from localStorage ...')
+      let countries = JSON.parse(localStorage.getItem('countries'))
+
+      let choices = []
+      for (let i = 0; i < 4; i++) {
+        let index = this.rand()
+        // todo: if not in array ...
+        choices.push(countries[index])
+      }
+
+      // choose country from choices
+      let index = this.rand(3)
+
+      this.country = countries[index]
+      this.choices = choices
+
+      console.log('choices', choices)
+      console.log('country', countries[index])
+    }
+
+    // Axios.get(`https://restcountries.eu/rest/v2/alpha/es`)
+    //   .then(response => {
+    //     console.log(response)
+    //     this.country = response.data
+    //   })
+  },
+  methods: {
+    rand (max = 250) {
+      return Math.floor(Math.random() * max + 1)
+    }
   }
 }
 </script>
@@ -57,15 +93,13 @@ ul {
   }
 }
 
-.flag-question {
-  padding: 4px;
+.flag {
+  border: 1px solid #ddd;
   line-height: 1.4;
-  background-color: #fff;
   border-radius: 0;
   transition: all .2s ease-in-out;
-  // display: inline-block;
-  max-width: 14%;
-  // width: 128px;
-  // height: 96px;
+  display: inline-block;
+  width: 150px;
+
 }
 </style>
