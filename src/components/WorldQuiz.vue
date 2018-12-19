@@ -13,8 +13,8 @@
       <img class="flag my-5" :src="country.flag">
 
       <div class="row">
-        <div class="choices offset-md-4 col-md-4">
-          <a :key="choice.name" v-for="choice in choices" class="btn btn-primary btn-block text-light">{{ choice.capital }}</a>
+        <div class="countries offset-md-4 col-md-4">
+          <a :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light">{{ country.capital }}</a>
         </div>
       </div>
       <score-board />
@@ -33,8 +33,7 @@ export default {
   data () {
     return {
       country: {},
-      choices: [],
-      records: []
+      countries: []
     }
   },
   components: {
@@ -49,24 +48,27 @@ export default {
           localStorage.setItem('countries', JSON.stringify(response.data))
         })
     } else {
-      console.log('from localStorage ...')
-      let countries = JSON.parse(localStorage.getItem('countries'))
+      console.log('****************\nfrom localStorage')
+      console.log('****************\n')
+      const CHOICES = 4
+      let records = JSON.parse(localStorage.getItem('countries'))
 
-      let choices = []
-      for (let i = 0; i < 4; i++) {
+      let countries = []
+      for (let i = 0; i < CHOICES; i++) {
         let index = this.rand()
         // todo: if not in array ...
-        choices.push(countries[index])
+        countries.push(records[index])
       }
 
-      // choose country from choices
-      let index = this.rand(3)
+      // choose country from randomly selected countries
+      let index = this.rand(CHOICES - 1)
+      console.log('=> index: ' + index)
 
+      this.countries = countries
       this.country = countries[index]
-      this.choices = choices
 
-      console.log('choices', choices)
-      console.log('country', countries[index])
+      this.countries.map(country => console.log(country.name))
+      console.log('country: ' + this.country.name)
     }
 
     // Axios.get(`https://restcountries.eu/rest/v2/alpha/es`)
