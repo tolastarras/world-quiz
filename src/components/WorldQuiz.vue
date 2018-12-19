@@ -10,11 +10,13 @@
       <div id="notifications"></div>
 
       <h2 class="mt-5">What's the capital of <strong>{{ country.name }}</strong>?</h2>
+      <h4 class="text-success">CORRECT: The capital of {{ country.name }} is {{ country.capital }}</h4>
+      <h4 class="text-danger">INCORRECT: The capital of {{ country.name }} is not {{ country.capital }}</h4>
       <img class="flag my-5" :src="country.flag">
 
       <div class="row">
         <div class="countries offset-md-4 col-md-4">
-          <a :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light">{{ country.capital }}</a>
+          <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disabled">{{ country.capital }}</a>
         </div>
       </div>
       <score-board />
@@ -33,7 +35,8 @@ export default {
   data () {
     return {
       country: {},
-      countries: []
+      countries: [],
+      answer: false
     }
   },
   components: {
@@ -48,21 +51,18 @@ export default {
           localStorage.setItem('countries', JSON.stringify(response.data))
         })
     } else {
-      console.log('****************\nfrom localStorage')
-      console.log('****************\n')
       const CHOICES = 4
       let records = JSON.parse(localStorage.getItem('countries'))
 
       let countries = []
       for (let i = 0; i < CHOICES; i++) {
         let index = this.rand()
-        // todo: if not in array ...
+        // TODO: if not in array ...
         countries.push(records[index])
       }
 
       // choose country from randomly selected countries
       let index = this.rand(CHOICES - 1)
-      console.log('=> index: ' + index)
 
       this.countries = countries
       this.country = countries[index]
@@ -80,6 +80,24 @@ export default {
   methods: {
     rand (max = 250) {
       return Math.floor(Math.random() * max + 1)
+    },
+    checkAnswer (e) {
+      let answer = e.target.text
+      if (answer === this.country.capital) {
+        console.log('CORRECT')
+        // display corrent message and disable buttons
+        // display next country?
+        // continue exit buttons?
+        // update record (correct answers)
+      } else {
+        console.log('NO ...........')
+        // disable all buttons and display error message
+      }
+    }
+  },
+  computed: {
+    disabled () {
+      return 'disabled'
     }
   }
 }
@@ -101,7 +119,6 @@ ul {
   border-radius: 0;
   transition: all .2s ease-in-out;
   display: inline-block;
-  width: 150px;
-
+  width: 200px;
 }
 </style>
