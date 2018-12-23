@@ -10,7 +10,7 @@
       <div id="notifications"></div>
 
       <h2 class="mt-5">What's the capital of <strong>{{ country.name }}</strong>?</h2>
-      <h4 v-if="didAnswer" class="mt-4" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
+      <h6 v-if="didAnswer" class="mt-4" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h6>
       <img class="flag my-5" :src="country.flag">
 
       <div class="row">
@@ -25,6 +25,7 @@
 
 <script>
 import Axios from 'axios'
+import { mapGetters } from 'vuex'
 
 import ScoreBoard from './ScoreBoard'
 import ButtonContinents from './ButtonContinents'
@@ -72,15 +73,10 @@ export default {
       console.log('country: ' + this.country.name)
       console.log('capital: ' + this.country.capital)
     }
-
-    // Axios.get(`https://restcountries.eu/rest/v2/alpha/es`)
-    //   .then(response => {
-    //     console.log(response)
-    //     this.country = response.data
-    //   })
   },
   methods: {
     rand (max = 250) {
+      console.log('LEN:', this.countries.length)
       return Math.floor(Math.random() * max + 1)
     },
     checkAnswer (e) {
@@ -90,23 +86,36 @@ export default {
       let answer = e.target.text
       if (answer === this.country.capital) {
         this.correct = true
-        this.message = `Congrats! the capital of ${this.country.name} is ${answer}`
 
-        console.log('CORRECT')
-        // display corrent message and disable buttons
-        // display next country?
-        // continue exit buttons?
-        // update record (correct answers)
+        // display message
+        this.message = `Congrats! the capital of ${this.country.name} is ${answer}`
+        this.updateScore(true)
       } else {
         // display error message
         this.message = `Sorry, the capital of ${this.country.name} is not ${answer}`
+        this.updateScore(false)
       }
-    }   
+
+      // TODO: continue playing or exit game?
+    },
+    updateScore (correctAnswer) {
+      let correct = this.score.correct
+      let incorrect = this.score.incorrect
+
+      if (correctAnswer) {
+        correct += 1
+      } else {
+        incorrect += 1
+      }
+
+      this.$store.dispatch('updateScore', { correct, incorrect })
+    }
   },
   computed: {
+    ...mapGetters(['score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
-    } 
+    }
   }
 }
 </script>

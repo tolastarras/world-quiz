@@ -3,10 +3,10 @@
     <div class="offset-md-4 col-md-4">
       <div class="row">
         <div class="col-md-6">
-          <h3 class="text-success">Streak: <strong>3</strong></h3>
+          <h3 class="text-success">Correct: <strong>{{ score.correct }}</strong></h3>
         </div>
         <div class="col-md-6">
-          <h3 class="text-primary">Record: <strong>7</strong></h3>
+          <h3 class="text-primary">Incorrect: <strong>{{ score.incorrect }}</strong></h3>
         </div>
       </div>
     </div>
@@ -14,10 +14,11 @@
 </template>
 
 <script>
-export default {
+import { mapGetters } from 'vuex'
 
+export default {
+  computed: {
+    ...mapGetters(['score'])
+  }
 }
 </script>
-
-<style lang="scss" scoped>
-</style>
