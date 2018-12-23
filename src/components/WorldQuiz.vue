@@ -10,13 +10,12 @@
       <div id="notifications"></div>
 
       <h2 class="mt-5">What's the capital of <strong>{{ country.name }}</strong>?</h2>
-      <h4 class="text-success">CORRECT: The capital of {{ country.name }} is {{ country.capital }}</h4>
-      <h4 class="text-danger">INCORRECT: The capital of {{ country.name }} is not {{ country.capital }}</h4>
+      <h4 v-if="didAnswer" class="mt-4" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
       <img class="flag my-5" :src="country.flag">
 
       <div class="row">
         <div class="countries offset-md-4 col-md-4">
-          <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disabled">{{ country.capital }}</a>
+          <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">{{ country.capital }}</a>
         </div>
       </div>
       <score-board />
@@ -36,7 +35,9 @@ export default {
     return {
       country: {},
       countries: [],
-      answer: false
+      didAnswer: false,
+      correct: false,
+      message: ''
     }
   },
   components: {
@@ -69,6 +70,7 @@ export default {
 
       this.countries.map(country => console.log(country.name))
       console.log('country: ' + this.country.name)
+      console.log('capital: ' + this.country.capital)
     }
 
     // Axios.get(`https://restcountries.eu/rest/v2/alpha/es`)
@@ -82,23 +84,29 @@ export default {
       return Math.floor(Math.random() * max + 1)
     },
     checkAnswer (e) {
+      // disable all buttons
+      this.didAnswer = true
+
       let answer = e.target.text
       if (answer === this.country.capital) {
+        this.correct = true
+        this.message = `Congrats! the capital of ${this.country.name} is ${answer}`
+
         console.log('CORRECT')
         // display corrent message and disable buttons
         // display next country?
         // continue exit buttons?
         // update record (correct answers)
       } else {
-        console.log('NO ...........')
-        // disable all buttons and display error message
+        // display error message
+        this.message = `Sorry, the capital of ${this.country.name} is not ${answer}`
       }
-    }
+    }   
   },
   computed: {
-    disabled () {
-      return 'disabled'
-    }
+    disableButton () {
+      return this.didAnswer ? 'disabled' : ''
+    } 
   }
 }
 </script>

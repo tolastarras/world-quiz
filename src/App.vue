@@ -11,8 +11,8 @@
 <script>
 export default {
   created () {
-    this.$store.dispatch('changeContinent', 'World')
-    this.$store.dispatch('changeCategory', 'Capitals')
+    this.$store.dispatch('setContinent', 'World')
+    this.$store.dispatch('setCategory', 'Capitals')
   }
 }
 </script>

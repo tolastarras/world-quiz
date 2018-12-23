@@ -15,16 +15,12 @@ import { mapGetters } from 'vuex'
 export default {
   methods: {
     selectCategory (e) {
-      this.$store.dispatch('changeCategory', e.target.innerText)
+      this.$store.dispatch('setCategory', e.target.innerText)
     }
   },
   computed: {
-    ...mapGetters([
-      'category',
-      'categories'
-    ])
+    ...mapGetters(['category', 'categories'])
     // category () {
-    //   console.log(this.$store.getters.getCategory)
     //   return this.$store.getters.getCategory
     // },
     // categories () {

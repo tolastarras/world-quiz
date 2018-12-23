@@ -13,7 +13,7 @@
 export default {
   methods: {
     selectContinent (e) {
-      this.$store.dispatch('changeContinent', e.target.innerText)
+      this.$store.dispatch('setContinent', e.target.innerText)
     }
   },
   computed: {
