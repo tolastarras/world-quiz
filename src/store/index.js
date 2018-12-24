@@ -29,10 +29,7 @@ export default new Vuex.Store({
   mutations: {
     [types.SET_CONTINENT] (state, payload) { state.continent = payload },
     [types.SET_CATEGORY] (state, payload) { state.category = payload },
-    [types.UPDATE_SCORE] (state, payload) {
-      console.log('payload:', payload)
-      state.score = payload
-    }
+    [types.UPDATE_SCORE] (state, payload) { state.score = payload }
   },
   actions: {
     setContinent ({ commit }, payload) {

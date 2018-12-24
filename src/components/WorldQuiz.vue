@@ -9,7 +9,7 @@
       <div class="anchor" id="question"></div>
       <div id="notifications"></div>
 
-      <h2 class="mt-5">What's the capital of <strong>{{ country.name }}</strong>?</h2>
+      <h2 class="mt-5">{{ question }}</h2>
       <transition name="fade">
         <h6 v-if="didAnswer" class="mt-4" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h6>
       </transition>
@@ -37,6 +37,7 @@ const QUIZ_CHOICES = 4
 export default {
   data () {
     return {
+      question: '',
       country: {},
       countries: [],
       didAnswer: false,
@@ -60,11 +61,18 @@ export default {
 
     this.questions()
   },
+  watch: {
+    category () {
+      this.questions()
+    }
+  },
   methods: {
     rand (max) {
       return Math.floor(Math.random() * max)
     },
     questions () {
+      this.clearAll()
+
       let records = JSON.parse(localStorage.getItem('countries'))
 
       for (let i = 0; i < QUIZ_CHOICES; i++) {
@@ -83,10 +91,18 @@ export default {
 
       this.country = this.countries[index]
 
+      // question based on choosen category
+      if (this.category.toLowerCase() === 'flags') {
+        this.question = `To which country does this flag belong?`
+      } else if (this.category.toLowerCase() === 'capitals') {
+        this.question = `What's the capital of ${this.country.name}?`
+      }
+
       // console log all countries selected (debuging purposes)
-      this.countries.map(country => console.log(country.name))
+      // this.countries.map(country => console.log(country.name))
       console.log('country: ' + this.country.name)
       console.log('capital: ' + this.country.capital)
+      console.log('*****************************')
     },
     checkAnswer (e) {
       // disable all buttons
@@ -107,7 +123,6 @@ export default {
 
       // show next questions in 2 seconds
       setTimeout(() => {
-        this.clearAll()
         this.questions()
       }, 2000)
     },
@@ -132,7 +147,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['score']),
+    ...mapGetters(['score', 'category']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     }
