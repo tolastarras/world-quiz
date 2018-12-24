@@ -10,12 +10,13 @@
       <div id="notifications"></div>
 
       <h2 class="mt-5">What's the capital of <strong>{{ country.name }}</strong>?</h2>
-      <h6 v-if="didAnswer" class="mt-4" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h6>
+      <transition name="fade">
+        <h6 v-if="didAnswer" class="mt-4" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h6>
+      </transition>
       <img class="flag my-5" :src="country.flag">
-
       <div class="row">
         <div class="countries offset-md-4 col-md-4">
-          <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">{{ country.capital }}</a>
+          <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">{{ country.capital | nocapital }}</a>
         </div>
       </div>
       <score-board />
@@ -30,6 +31,8 @@ import { mapGetters } from 'vuex'
 import ScoreBoard from './ScoreBoard'
 import ButtonContinents from './ButtonContinents'
 import ButtonCategories from './ButtonCategories'
+
+const QUIZ_CHOICES = 4
 
 export default {
   data () {
@@ -48,36 +51,42 @@ export default {
   },
   mounted () {
     if (!localStorage.getItem('countries')) {
+      // get records from api and load local storage
       Axios.get('https://restcountries.eu/rest/v2/all?fields=name;region;flag;capital')
         .then(response => {
           localStorage.setItem('countries', JSON.stringify(response.data))
         })
-    } else {
-      const CHOICES = 4
+    }
+
+    this.questions()
+  },
+  methods: {
+    rand (max) {
+      return Math.floor(Math.random() * max)
+    },
+    questions () {
       let records = JSON.parse(localStorage.getItem('countries'))
 
-      let countries = []
-      for (let i = 0; i < CHOICES; i++) {
-        let index = this.rand()
-        // TODO: if not in array ...
-        countries.push(records[index])
+      for (let i = 0; i < QUIZ_CHOICES; i++) {
+        let index = this.rand(records.length)
+        // avoid duplicate keys
+        if (this.countries.indexOf(records[index]) > -1) {
+          console.log(records[index] + ' is already in the array...')
+          i--
+          continue
+        }
+        this.countries.push(records[index])
       }
 
       // choose country from randomly selected countries
-      let index = this.rand(CHOICES - 1)
+      let index = this.rand(QUIZ_CHOICES)
 
-      this.countries = countries
-      this.country = countries[index]
+      this.country = this.countries[index]
 
+      // console log all countries selected (debuging purposes)
       this.countries.map(country => console.log(country.name))
       console.log('country: ' + this.country.name)
       console.log('capital: ' + this.country.capital)
-    }
-  },
-  methods: {
-    rand (max = 250) {
-      console.log('LEN:', this.countries.length)
-      return Math.floor(Math.random() * max + 1)
     },
     checkAnswer (e) {
       // disable all buttons
@@ -96,7 +105,11 @@ export default {
         this.updateScore(false)
       }
 
-      // TODO: continue playing or exit game?
+      // show next questions in 2 seconds
+      setTimeout(() => {
+        this.clearAll()
+        this.questions()
+      }, 2000)
     },
     updateScore (correctAnswer) {
       let correct = this.score.correct
@@ -109,12 +122,24 @@ export default {
       }
 
       this.$store.dispatch('updateScore', { correct, incorrect })
+    },
+    clearAll () {
+      this.country = {}
+      this.countries = []
+      this.didAnswer = false
+      this.correct = false
+      this.message = ''
     }
   },
   computed: {
     ...mapGetters(['score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
+    }
+  },
+  filters: {
+    nocapital (value) {
+      return !value ? 'No Capital' : value
     }
   }
 }
@@ -137,5 +162,13 @@ ul {
   transition: all .2s ease-in-out;
   display: inline-block;
   width: 200px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+
+.fade-enter, .fade-leave-to {
+  opacity: 0;
 }
 </style>

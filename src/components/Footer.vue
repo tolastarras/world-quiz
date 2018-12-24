@@ -1,9 +1,9 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <social-media />
+      <social-media v-show="false" />
       <p>
-        &copy; 2018 - world-quiz
+        &copy; 2018 - World Quiz. All rights reserved.
       </p>
     </div>
   </footer>
