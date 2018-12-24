@@ -13,7 +13,10 @@
       <img class="flag my-5" :src="country.flag">
       <div class="row">
         <div class="countries offset-md-4 col-md-4">
-          <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">{{ country.capital | nocapital }}</a>
+          <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">
+            <span v-if="isFlagCategory">{{ country.name }}</span>
+            <span v-else>{{ country.capital | nocapital }}</span>
+          </a>
         </div>
       </div>
       <score-board />
@@ -145,6 +148,10 @@ export default {
     ...mapGetters(['score', 'category']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
+    },
+    isFlagCategory () {
+      console.log('IS FLAG CATEGORY:', this.category.toLowerCase() === 'flags')
+      return this.category.toLowerCase() === 'flags'
     }
   },
   filters: {
