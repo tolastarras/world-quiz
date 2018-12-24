@@ -1,9 +1,6 @@
 <template>
   <div class="content my-5">
-    <div class="text-center">
-      <button-continents />
-      <button-categories />
-    </div>
+    <quiz-options />
 
     <div class="text-center">
       <div class="anchor" id="question"></div>
@@ -29,8 +26,7 @@ import Axios from 'axios'
 import { mapGetters } from 'vuex'
 
 import ScoreBoard from './ScoreBoard'
-import ButtonContinents from './ButtonContinents'
-import ButtonCategories from './ButtonCategories'
+import QuizOptions from './QuizOptions'
 
 const QUIZ_CHOICES = 4
 
@@ -47,8 +43,7 @@ export default {
   },
   components: {
     ScoreBoard,
-    ButtonContinents,
-    ButtonCategories
+    QuizOptions
   },
   mounted () {
     if (!localStorage.getItem('countries')) {
