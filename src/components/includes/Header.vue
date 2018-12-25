@@ -1,11 +1,11 @@
 <template>
   <div class="jumbotron text-center">
     <div class="container">
-      <h1>Take the World Quiz</h1>
-      <h4 class="mb-5">Test your knowledge!</h4>
+      <h1 class="display-4">Take the World Quiz</h1>
+      <h3 class="mb-5">Test your knowledge!</h3>
     </div>
     <div class="bottom">
-      <h3 class="text-light">{{ category }} of {{ continent }}</h3>
+      <h3 class="text-warning">{{ category }} of {{ continent }}</h3>
     </div>
   </div>
 </template>

@@ -21,6 +21,8 @@ export default new Vuex.Store({
       'Flags',
       'Capitals'
     ],
+    country: {},
+    countries: [],
     score: {
       correct: 0,
       incorrect: 0
@@ -29,6 +31,8 @@ export default new Vuex.Store({
   mutations: {
     [types.SET_CONTINENT] (state, payload) { state.continent = payload },
     [types.SET_CATEGORY] (state, payload) { state.category = payload },
+    [types.SET_COUNTRY] (state, payload) { state.country = payload },
+    [types.SET_COUNTRIES] (state, payload) { state.countries = payload },
     [types.UPDATE_SCORE] (state, payload) { state.score = payload }
   },
   actions: {
@@ -38,6 +42,12 @@ export default new Vuex.Store({
     setCategory ({ commit }, payload) {
       commit('SET_CATEGORY', payload)
     },
+    setCountry ({ commit }, payload) {
+      commit('SET_COUNTRY', payload)
+    },
+    setCountries ({ commit }, payload) {
+      commit('SET_COUNTRIES', payload)
+    },        
     updateScore ({ commit }, payload) {
       commit('UPDATE_SCORE', payload)
     }
@@ -47,6 +57,8 @@ export default new Vuex.Store({
     continents: state => state.continents,
     category: state => state.category,
     categories: state => state.categories,
+    country: state => state.country,
+    countries: state => state.countries,
     score: state => state.score
   }
 })

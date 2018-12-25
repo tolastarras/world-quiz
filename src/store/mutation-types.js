@@ -1,3 +1,5 @@
 export const SET_CATEGORY = 'SET_CATEGORY'
 export const SET_CONTINENT = 'SET_CONTINENT'
+export const SET_COUNTRY = 'SET_COUNTRY'
+export const SET_COUNTRIES = 'SET_COUNTRIES'
 export const UPDATE_SCORE = 'UPDATE_SCORE'

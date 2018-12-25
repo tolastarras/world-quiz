@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import SocialMedia from './SocialMedia'
+import SocialMedia from '@/components/SocialMedia'
 
 export default {
   components: {

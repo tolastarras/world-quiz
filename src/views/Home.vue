@@ -9,9 +9,9 @@
 </template>
 
 <script>
-import HeaderSection from '@/components/Header'
-import WorldQuiz from '@/components/WorldQuiz'
-import FooterSection from '@/components/Footer'
+import HeaderSection from '@/components/includes/Header'
+import FooterSection from '@/components/includes/Footer'
+import WorldQuiz from '@/components/quiz/'
 
 export default {
   name: 'home',
