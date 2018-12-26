@@ -2,8 +2,11 @@
   <div class="content my-5">
     <quiz-options />
     <div class="text-center">
-      <div class="row">
-        <flags-category />
+      <div v-if="isFlagsCategory" class="row">
+        <flags-category :response="handleResponse" />
+      </div>
+      <div v-else class="row">
+        <capitals-category v-on:handle-response="handleResponse" />
       </div>
       <score-board />
     </div>
@@ -15,6 +18,7 @@ import Axios from 'axios'
 import { mapGetters } from 'vuex'
 
 import FlagsCategory from '@/components/quiz/categories/FlagsCategory'
+import CapitalsCategory from '@/components/quiz/categories/CapitalsCategory'
 import ScoreBoard from '@/components/ScoreBoard'
 import QuizOptions from './options/'
 
@@ -24,7 +28,8 @@ export default {
   components: {
     ScoreBoard,
     QuizOptions,
-    FlagsCategory
+    FlagsCategory,
+    CapitalsCategory
   },
   mounted () {
     if (!localStorage.getItem('countries')) {
@@ -68,12 +73,16 @@ export default {
       let index = this.rand(QUIZ_CHOICES)
 
       this.$store.dispatch('setCountry', countries[index])
+    },
+    handleResponse () {
+      console.log('response ...')
+      // load new set of questions
+      this.questions()
     }
   },
   computed: {
     ...mapGetters(['category']),
-    isFlagCategory () {
-      console.log('IS FLAG CATEGORY:', this.category.toLowerCase() === 'flags')
+    isFlagsCategory () {
       return this.category.toLowerCase() === 'flags'
     }
   }
