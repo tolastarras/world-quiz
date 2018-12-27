@@ -26,5 +26,6 @@ footer {
   padding: 50px;
   background: linear-gradient(90deg,#f4c01a,#0d6632);
   color: #ccc;
+  font-size: 1.2em;
 }
 </style>

@@ -22,7 +22,12 @@ export default {
 #app {
   color: #2c3e50;
 }
+
 #nav {
   display: none;
+}
+
+button, a, li {
+  font-size: 1.4em !important;
 }
 </style>

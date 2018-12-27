@@ -31,6 +31,17 @@ export default {
 .dropdown-menu {
   background-color: #008cba;
   border-color: #0079a1;
+  padding: 0 8px;
+
+  > li {
+    color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 6px;
+
+    &:last-child {
+      border: none;
+    }
+  }
 }
 
 @media screen and (max-width: 415px) {

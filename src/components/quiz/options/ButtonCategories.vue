@@ -32,7 +32,20 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown-menu {
-  width: 100% !important;
+  background-color: #43ac6a;
+  border-color: #3c9a5f;
+  padding: 0 8px;
+  width: 100%;
+
+  > li {
+    color: white;
+    border-bottom: 1px solid #ddd;
+    padding: 6px;
+
+    &:last-child {
+      border: none;
+    }
+  }
 }
 
 @media screen and (max-width: 415px) {

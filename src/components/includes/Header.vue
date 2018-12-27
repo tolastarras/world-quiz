@@ -2,7 +2,7 @@
   <div class="jumbotron text-center">
     <div class="container">
       <h1 class="display-4">Take the World Quiz</h1>
-      <h3 class="mb-5">Test your knowledge!</h3>
+      <h4 class="mb-4 pb-4">Test your knowledge!</h4>
     </div>
     <div class="bottom">
       <h3 class="text-warning">{{ category }} of {{ continent }}</h3>
