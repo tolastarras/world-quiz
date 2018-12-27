@@ -34,8 +34,14 @@ export default {
 }
 
 @media screen and (max-width: 415px) {
-  button {
-    margin-bottom: .5em;
+  .btn-group {
+    width: 100%;
+
+    button {
+      margin-bottom: .5em;
+      width: 100%;
+      margin-right: 0 !important;
+    }
   }
 }
 </style>

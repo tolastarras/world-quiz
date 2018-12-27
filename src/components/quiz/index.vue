@@ -106,7 +106,7 @@ export default {
       }
 
       this.$store.dispatch('updateScore', { correct, incorrect })
-    },    
+    }
   },
   computed: {
     ...mapGetters(['continent', 'category', 'score']),

@@ -47,7 +47,7 @@ export default new Vuex.Store({
     },
     setCountries ({ commit }, payload) {
       commit('SET_COUNTRIES', payload)
-    },        
+    },
     updateScore ({ commit }, payload) {
       commit('UPDATE_SCORE', payload)
     }

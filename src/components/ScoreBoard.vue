@@ -3,7 +3,7 @@
     <div class="offset-md-3 col-md-6">
       <div class="row">
         <div class="col-md-6">
-          <div class="score text-uppercase">
+          <div class="score text-uppercase mb-3">
             <h3>Right</h3>
             <div class="display-3 text-success ">
               <strong>{{ score.correct }}</strong>
@@ -37,8 +37,7 @@ export default {
   .score {
     border: 1px solid #aaa;
     border-radius: 4px;
-    padding: 1em 0 2em 0 !important;
+    padding: 1em 0 !important;
     background: #eee;
   }
 </style>
-
