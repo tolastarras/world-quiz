@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-    <h2 class="mt-4">What is the capital of {{ country.name }}</h2>
+    <h2 class="mt-4">To which country does this flag belong?</h2>
     <transition name="fade">
       <h6 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h6>
     </transition>
@@ -9,7 +9,7 @@
     <div class="row">
       <div class="countries offset-md-4 col-md-4">
         <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">
-          {{ country.capital | nocapital }}
+          {{ country.name }}
         </a>
       </div>
     </div>
@@ -34,22 +34,25 @@ export default {
 
       let answer = e.target.text.trim()
 
-      if (answer === this.country.capital) {
+      if (answer === this.country.name) {
         this.correct = true
 
         // display message
-        this.message = `Congrats! the capital of ${this.country.name} is ${answer}`
+        this.message = `Congrats! this is ${this.country.name}'s flag`
         this.updateScore(true)
       } else {
         // display error message
-        this.message = `Sorry, the capital of ${this.country.name} is not ${answer}`
+        this.message = `Sorry, this is NOT ${answer}'s flag`
         this.updateScore(false)
       }
 
       // show next question set in 2 seconds
       setTimeout(() => {
-        // this.questions()
-        this.$emit.response()
+        // load new set of questions
+        this.$emit('handle-response')
+
+        // reset values
+        this.reset()
       }, 2000)
     },
     updateScore (correctAnswer) {
@@ -63,17 +66,17 @@ export default {
       }
 
       this.$store.dispatch('updateScore', { correct, incorrect })
+    },
+    reset () {
+      this.message = ''
+      this.didAnswer = false
+      this.correct = false
     }
   },
   computed: {
     ...mapGetters(['country', 'countries', 'score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
-    }
-  },
-  filters: {
-    nocapital (value) {
-      return !value ? 'No Capital' : value
     }
   }
 }

@@ -3,7 +3,7 @@
     <quiz-options />
     <div class="text-center">
       <div v-if="isFlagsCategory" class="row">
-        <flags-category :response="handleResponse" />
+        <flags-category v-on:handle-response="handleResponse" />
       </div>
       <div v-else class="row">
         <capitals-category v-on:handle-response="handleResponse" />
@@ -83,6 +83,7 @@ export default {
   computed: {
     ...mapGetters(['category']),
     isFlagsCategory () {
+      console.log(this.category)
       return this.category.toLowerCase() === 'flags'
     }
   }
