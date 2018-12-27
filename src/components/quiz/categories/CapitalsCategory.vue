@@ -7,7 +7,7 @@
 
     <img class="flag mt-2 mb-5" :src="country.flag">
     <div class="row">
-      <div class="countries offset-md-4 col-md-4">
+      <div class="countries offset-md-3 col-md-6">
         <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">
           {{ country.capital | nocapital }}
         </a>

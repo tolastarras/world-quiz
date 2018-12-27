@@ -32,4 +32,10 @@ export default {
   background-color: #008cba;
   border-color: #0079a1;
 }
+
+@media screen and (max-width: 415px) {
+  button {
+    margin-bottom: .5em;
+  }
+}
 </style>

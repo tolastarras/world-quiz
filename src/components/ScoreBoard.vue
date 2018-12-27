@@ -1,12 +1,22 @@
 <template>
-  <div class="score row my-5 text-center">
-    <div class="offset-md-4 col-md-4">
+  <div class="row my-5 text-center">
+    <div class="offset-md-3 col-md-6">
       <div class="row">
         <div class="col-md-6">
-          <h3 class="text-success">Correct: <strong>{{ score.correct }}</strong></h3>
+          <div class="score text-uppercase">
+            <h3>Right</h3>
+            <div class="display-3 text-success ">
+              <strong>{{ score.correct }}</strong>
+            </div>
+          </div>
         </div>
         <div class="col-md-6">
-          <h3 class="text-primary">Incorrect: <strong>{{ score.incorrect }}</strong></h3>
+          <div class="score text-uppercase">
+            <h3>Wrong</h3>
+            <div class="display-3 text-danger">
+              <strong>{{ score.incorrect }}</strong>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -22,3 +32,13 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .score {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: 1em 0 2em 0 !important;
+    background: #eee;
+  }
+</style>
+

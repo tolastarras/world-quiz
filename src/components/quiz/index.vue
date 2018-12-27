@@ -1,5 +1,5 @@
 <template>
-  <div class="content my-5">
+  <div class="container my-5">
     <quiz-options />
     <div class="text-center">
       <div v-if="isFlagsCategory" class="row">

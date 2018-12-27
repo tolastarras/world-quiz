@@ -32,7 +32,6 @@ export default {
 
 <style lang="scss" scoped>
 .dropdown-menu {
-  background-color: #43ac6a;
-  border-color: #3c9a5f;
+  width: 100% !important;
 }
 </style>
