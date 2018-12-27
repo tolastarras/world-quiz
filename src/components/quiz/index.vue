@@ -31,13 +31,16 @@ export default {
     FlagsCategory,
     CapitalsCategory
   },
-  mounted () {
+  async mounted () {
     if (!localStorage.getItem('countries')) {
+      console.log('from api')
       // get records from api and load local storage
-      Axios.get('https://restcountries.eu/rest/v2/all?fields=name;region;flag;capital')
+      await Axios.get('https://restcountries.eu/rest/v2/all?fields=name;region;flag;capital')
         .then(response => {
           localStorage.setItem('countries', JSON.stringify(response.data))
         })
+    } else {
+      console.log('local storage')
     }
 
     this.questions()
@@ -71,6 +74,7 @@ export default {
     },
     questions () {
       let records = this.records()
+
       let countries = []
       for (let i = 0; i < QUIZ_CHOICES; i++) {
         let index = this.rand(records.length)

@@ -25,23 +25,4 @@ export default {
 #nav {
   display: none;
 }
-
-.dropdown-menu {
-  li {
-    color: #eee;
-    margin: 0 8px;
-    padding: 5px 0;
-    border-bottom: 1px solid #ddd;
-
-    &:hover {
-      color: #fff;
-      cursor: pointer;
-    }
-
-    &:last-child {
-      padding-bottom: 0;
-      border-bottom: 0;
-    }
-  }
-}
 </style>
