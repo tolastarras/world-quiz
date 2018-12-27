@@ -43,6 +43,9 @@ export default {
     this.questions()
   },
   watch: {
+    continent () {
+      this.questions()
+    },
     category () {
       this.questions()
     }
@@ -51,8 +54,24 @@ export default {
     rand (max) {
       return Math.floor(Math.random() * max)
     },
-    questions () {
+    records () {
       let records = JSON.parse(localStorage.getItem('countries'))
+
+      // world records
+      if (this.continent === 'World') {
+        return records
+      }
+
+      // continent specific records
+      return records.filter(record => {
+        if (record.region === this.continent) {
+          return record
+        }
+      })
+    },
+    questions () {
+      let records = this.records()
+      console.log(records)
 
       let countries = []
       for (let i = 0; i < QUIZ_CHOICES; i++) {
@@ -60,7 +79,7 @@ export default {
 
         // avoid duplicate keys
         if (countries.indexOf(records[index]) > -1) {
-          console.log(records[index] + ' is already in the array...')
+          console.log(records[index].name + ' is already in the array (choosing another)...')
           i--
           continue
         }
@@ -75,15 +94,13 @@ export default {
       this.$store.dispatch('setCountry', countries[index])
     },
     handleResponse () {
-      console.log('response ...')
       // load new set of questions
       this.questions()
     }
   },
   computed: {
-    ...mapGetters(['category']),
+    ...mapGetters(['continent', 'category']),
     isFlagsCategory () {
-      console.log(this.category)
       return this.category.toLowerCase() === 'flags'
     }
   }

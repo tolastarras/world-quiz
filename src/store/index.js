@@ -14,7 +14,7 @@ export default new Vuex.Store({
       'Africa',
       'Asia',
       'Europe',
-      'America',
+      'Americas',
       'Oceania'
     ],
     categories: [
