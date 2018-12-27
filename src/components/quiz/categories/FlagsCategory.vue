@@ -2,7 +2,7 @@
   <div class="col">
     <h2 class="mt-4">To which country does this flag belong?</h2>
     <transition name="fade">
-      <h6 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h6>
+      <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
     </transition>
 
     <img class="flag mt-2 mb-5" :src="country.flag">
@@ -38,11 +38,11 @@ export default {
         this.correct = true
 
         // display message
-        this.message = `Congrats! this is ${this.country.name}'s flag`
+        this.message = `Congrats! ${this.country.name} is correct`
         this.$emit('update-score', true)
       } else {
         // display error message
-        this.message = `Sorry, this is NOT ${answer}'s flag`
+        this.message = `Sorry, ${answer} is incorrect`
         this.$emit('update-score', false)
       }
 

@@ -100,16 +100,19 @@ export default {
       this.questions()
     },
     updateScore (correctAnswer) {
-      let correct = this.score.correct
-      let incorrect = this.score.incorrect
+      let streak = this.score.streak
+      let record = this.score.record
 
       if (correctAnswer) {
-        correct += 1
+        streak++
+        if (streak > record) {
+          record++
+        }
       } else {
-        incorrect += 1
+        streak = 0
       }
 
-      this.$store.dispatch('updateScore', { correct, incorrect })
+      this.$store.dispatch('updateScore', { streak, record })
     }
   },
   computed: {

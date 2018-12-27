@@ -24,8 +24,8 @@ export default new Vuex.Store({
     country: {},
     countries: [],
     score: {
-      correct: 0,
-      incorrect: 0
+      streak: 0,
+      record: 0
     }
   },
   mutations: {

@@ -1,8 +1,8 @@
 <template>
   <div class="col">
-    <h2 class="mt-4">What is the capital of {{ country.name }}</h2>
+    <h2 class="mt-4">What is the capital of {{ country.name }}?</h2>
     <transition name="fade">
-      <h6 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h6>
+      <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
     </transition>
 
     <img class="flag mt-2 mb-5" :src="country.flag">
@@ -38,11 +38,11 @@ export default {
         this.correct = true
 
         // display message
-        this.message = `Congrats! the capital of ${this.country.name} is ${answer}`
+        this.message = `Congrats! ${answer} is correct`
         this.$emit('update-score', true)
       } else {
         // display error message
-        this.message = `Sorry, the capital of ${this.country.name} is not ${answer}`
+        this.message = `Sorry, ${answer} is incorrect`
         this.$emit('update-score', false)
       }
 
