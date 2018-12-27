@@ -39,11 +39,11 @@ export default {
 
         // display message
         this.message = `Congrats! this is ${this.country.name}'s flag`
-        this.updateScore(true)
+        this.$emit('update-score', true)
       } else {
         // display error message
         this.message = `Sorry, this is NOT ${answer}'s flag`
-        this.updateScore(false)
+        this.$emit('update-score', false)
       }
 
       // show next question set in 2 seconds
@@ -54,18 +54,6 @@ export default {
         // reset values
         this.reset()
       }, 2000)
-    },
-    updateScore (correctAnswer) {
-      let correct = this.score.correct
-      let incorrect = this.score.incorrect
-
-      if (correctAnswer) {
-        correct += 1
-      } else {
-        incorrect += 1
-      }
-
-      this.$store.dispatch('updateScore', { correct, incorrect })
     },
     reset () {
       this.message = ''

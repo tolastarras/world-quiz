@@ -3,10 +3,10 @@
     <quiz-options />
     <div class="text-center">
       <div v-if="isFlagsCategory" class="row">
-        <flags-category v-on:handle-response="handleResponse" />
+        <flags-category v-on:handle-response="handleResponse" v-on:update-score="updateScore" />
       </div>
       <div v-else class="row">
-        <capitals-category v-on:handle-response="handleResponse" />
+        <capitals-category v-on:handle-response="handleResponse" v-on:update-score="updateScore" />
       </div>
       <score-board />
     </div>
@@ -71,8 +71,6 @@ export default {
     },
     questions () {
       let records = this.records()
-      console.log(records)
-
       let countries = []
       for (let i = 0; i < QUIZ_CHOICES; i++) {
         let index = this.rand(records.length)
@@ -96,10 +94,22 @@ export default {
     handleResponse () {
       // load new set of questions
       this.questions()
-    }
+    },
+    updateScore (correctAnswer) {
+      let correct = this.score.correct
+      let incorrect = this.score.incorrect
+
+      if (correctAnswer) {
+        correct += 1
+      } else {
+        incorrect += 1
+      }
+
+      this.$store.dispatch('updateScore', { correct, incorrect })
+    },    
   },
   computed: {
-    ...mapGetters(['continent', 'category']),
+    ...mapGetters(['continent', 'category', 'score']),
     isFlagsCategory () {
       return this.category.toLowerCase() === 'flags'
     }
