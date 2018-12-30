@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-    <h2 class="mt-4">To which country does this flag belong?</h2>
+    <h2 class="mt-4">What country has this flag?</h2>
     <transition name="fade">
       <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
     </transition>
