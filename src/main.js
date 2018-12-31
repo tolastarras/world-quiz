@@ -10,6 +10,13 @@ import '@/assets/scss/categories.scss'
 
 Vue.config.productionTip = false
 
+// global filter
+Vue.filter('format-country-name', value => {
+  // str = "Korea (Democratic People's Republic of)"
+  if (!value) return ''
+  return value.replace(/(.*)\s\((.*)\)/, '$2 $1')
+})
+
 new Vue({
   router,
   store,

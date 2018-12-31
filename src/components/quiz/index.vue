@@ -87,6 +87,10 @@ export default {
 
       this.$store.dispatch('setCountries', countries)
 
+      // debuggin ONLY
+      // countries.map(country => console.log(country.name))
+      // console.log('*************')
+
       // choose country from randomly selected countries
       let index = this.rand(QUIZ_CHOICES)
 

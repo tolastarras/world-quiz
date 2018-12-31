@@ -1,6 +1,6 @@
 <template>
   <div class="col">
-    <h2 class="mt-4">What is the capital of {{ country.name | fullname }}?</h2>
+    <h2 class="mt-4">What is the capital of {{ country.name | format-country-name }}?</h2>
     <transition name="fade">
       <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
     </transition>
@@ -59,7 +59,7 @@ export default {
       this.message = ''
       this.didAnswer = false
       this.correct = false
-    }   
+    }
   },
   computed: {
     ...mapGetters(['country', 'countries', 'score']),
@@ -73,12 +73,6 @@ export default {
   filters: {
     nocapital (value) {
       return !value ? 'No Capital' : value
-    },
-    fullname (str) {
-      // str = "Korea (Democratic People's Republic of)"
-      // console.log(str.replace(/(\w+) \((\w+)?\)/, '$2, $1'))
-      console.log(str.replace(/\(\w+\)/, ''))
-      return str
     }
   }
 }

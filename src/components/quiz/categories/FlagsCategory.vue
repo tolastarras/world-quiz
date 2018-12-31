@@ -9,7 +9,7 @@
     <div class="row">
       <div class="countries offset-md-3 col-md-6">
         <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">
-          {{ country.name }}
+          {{ country.name | format-country-name }}
         </a>
       </div>
     </div>
@@ -38,7 +38,7 @@ export default {
         this.correct = true
 
         // display message
-        this.message = `Congrats! ${this.country.name} is correct`
+        this.message = `Congrats! ${answer} is correct`
         this.$emit('update-score', true)
       } else {
         // display error message
