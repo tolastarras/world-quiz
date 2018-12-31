@@ -20,6 +20,7 @@ export default {
 #app {
   color: #2c3e50;
   font-family: Arial, Helvetica, sans-serif;
+  background: #eee;
 }
 
 #nav {

@@ -71,25 +71,5 @@ export default {
 </script>
 
 <style>
-.flag {
-  line-height: 1.4;
-  border-radius: 0;
-  transition: all .2s ease-in-out;
-  display: inline-block;
-  width: 200px;
-  height: 140px;
-  box-shadow: 1px 7px 55px 3px rgba(0, 0, 0, 0.75);
-}
-
-.message {
-  height: 2em;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
+/* style in assets/scss/categories.scss */
 </style>

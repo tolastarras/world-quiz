@@ -5,7 +5,7 @@
       <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
     </transition>
 
-    <img class="flag mt-2 mb-5" :src="country.flag">
+    <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage"></div>
     <div class="row">
       <div class="countries offset-md-3 col-md-6">
         <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">
@@ -65,6 +65,9 @@ export default {
     ...mapGetters(['country', 'countries', 'score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
+    },
+    backgroundImage () {
+      return 'backgroundImage: url(' + this.country.flag + ')'
     }
   },
   filters: {
@@ -76,24 +79,5 @@ export default {
 </script>
 
 <style>
-.flag {
-  border: 1px solid #ddd;
-  line-height: 1.4;
-  border-radius: 0;
-  transition: all .2s ease-in-out;
-  display: inline-block;
-  width: 200px;
-}
-
-.message {
-  height: 2em;
-}
-
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .5s;
-}
-
-.fade-enter, .fade-leave-to {
-  opacity: 0;
-}
+/* style in assets/scss/categories.scss */
 </style>

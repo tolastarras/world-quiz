@@ -5,7 +5,7 @@
         <div class="col-md-6">
           <div class="score text-uppercase mb-3">
             <h3>Streak</h3>
-            <div class="display-3 text-success ">
+            <div class="display-3 text-success">
               <strong>{{ score.streak }}</strong>
             </div>
           </div>
@@ -39,6 +39,6 @@ export default {
     border: 1px solid #aaa;
     border-radius: 4px;
     padding: 1em 0 !important;
-    background: #eee;
+    background: #fff;
   }
 </style>
