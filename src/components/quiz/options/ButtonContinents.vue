@@ -1,6 +1,6 @@
 <template>
   <div class="btn-group">
-    <button type="button" class="btn btn-primary dropdown-toggle mr-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="btn btn-primary dropdown-toggle mr-2 mb-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span class="fa fa-globe"></span> Region: {{ continent }} <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">

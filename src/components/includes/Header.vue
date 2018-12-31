@@ -1,8 +1,8 @@
 <template>
   <div class="jumbotron text-center">
     <div class="container">
-      <h1 class="display-4">Take the World Quiz</h1>
-      <h4 class="mb-4 pb-4">Test your knowledge!</h4>
+      <h1 class="display-4 text-light"><span>Take the </span>World Quiz</h1>
+      <h4 class="mb-4 pb-4 text-light">Test your knowledge!</h4>
     </div>
     <div class="bottom">
       <h3 class="text-warning">{{ category }} of {{ continent }}</h3>
@@ -42,6 +42,15 @@ export default {
     bottom: 0;
     padding: 18px 0;
     background-color: rgba(0,0,0,.2);
+  }
+}
+
+@media screen and (max-width: 415px) {
+  h1 {
+    font-size: 3.2em;
+    > span {
+      display: none;
+    }
   }
 }
 </style>

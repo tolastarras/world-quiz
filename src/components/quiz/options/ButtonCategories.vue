@@ -1,6 +1,6 @@
 <template>
   <div class="btn-group">
-    <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    <button type="button" class="btn btn-success dropdown-toggle mb-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span class="fa fa-gamepad"></span> Category: Find {{ category }} <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">

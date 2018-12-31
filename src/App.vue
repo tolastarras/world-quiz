@@ -18,7 +18,7 @@ export default {
 
 <style lang="scss">
 #app {
-  color: #2c3e50;
+  // color: #2c3e50;
   font-family: Arial, Helvetica, sans-serif;
   background: #eee;
 }
