@@ -33,9 +33,23 @@ export default new Vuex.Store({
     [types.SET_CATEGORY] (state, payload) { state.category = payload },
     [types.SET_COUNTRY] (state, payload) { state.country = payload },
     [types.SET_COUNTRIES] (state, payload) { state.countries = payload },
-    [types.UPDATE_SCORE] (state, payload) { state.score = payload }
+    [types.UPDATE_SCORE] (state, payload) {
+      state.score = payload
+      localStorage.setItem('record', payload.record)
+    }
   },
   actions: {
+    init ({ commit }) {
+      // default selections
+      commit('SET_CONTINENT', 'World')
+      commit('SET_CATEGORY', 'Capitals')
+
+      if (!localStorage.getItem('record')) {
+        localStorage.setItem('record', 0)
+      }
+
+      commit('UPDATE_SCORE', { streak: 0, record: localStorage.getItem('record') })
+    },
     setContinent ({ commit }, payload) {
       commit('SET_CONTINENT', payload)
     },

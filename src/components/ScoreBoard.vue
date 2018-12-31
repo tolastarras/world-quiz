@@ -27,6 +27,7 @@
 import { mapGetters } from 'vuex'
 
 export default {
+  name: 'ScoreBoard',
   computed: {
     ...mapGetters(['score'])
   }

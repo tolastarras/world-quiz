@@ -11,9 +11,7 @@
 <script>
 export default {
   created () {
-    // default selections
-    this.$store.dispatch('setContinent', 'World')
-    this.$store.dispatch('setCategory', 'Capitals')
+    this.$store.dispatch('init')
   }
 }
 </script>
