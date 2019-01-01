@@ -27,10 +27,8 @@ export default {
       correct: false
     }
   },
-  updated () {
-    console.log('update ...')
+  mounted () {
     if (!this.message) {
-      console.log('show a default ...')
       this.hint()
     }
   },
@@ -68,9 +66,9 @@ export default {
     hint () {
       let the = ''
       if (this.country.region.toLowerCase() === 'americas') {
-        the = 'the'
+        the = 'The'
       }
-      this.message = `Hint: ${this.country.name} is located in ${the} ${this.country.region}`
+      this.message = `Hint: ${the} ${this.country.region}`
     },
     reset () {
       this.message = ''

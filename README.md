@@ -11,4 +11,6 @@ https://restcountries.eu/
 2. handle choice 'no capital' as a valid answer
 3. choose questions (countries) from same continent to make it harder to guess
 4. remember selections on reload (check savvy-vuegram)
-5. record based on category selected ONLY
+5. update record based on category selected and not as ALL
+6. show loading flag while waiting
+7. refactor capitals and flags categories

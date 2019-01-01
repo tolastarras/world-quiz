@@ -2,10 +2,10 @@
   <div class="col categories">
     <h2 class="mt-4">What country has this flag?</h2>
     <transition name="fade">
-      <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
+      <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
 
-    <img class="flag mt-2 mb-5" :src="country.flag">
+    <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage"></div>
     <div class="row">
       <div class="countries offset-md-3 col-md-6">
         <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">
@@ -18,6 +18,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import helper from '@/helpers/'
 
 export default {
   data () {
@@ -27,14 +28,20 @@ export default {
       correct: false
     }
   },
+  mounted () {
+    if (!this.message) {
+      this.hint()
+    }
+  },
   methods: {
     checkAnswer (e) {
       // disable all buttons
       this.didAnswer = true
 
       let answer = e.target.text.trim()
+      console.log('answer:', answer)
 
-      if (answer === this.country.name) {
+      if (answer === helper.formatCountryName(this.country.name)) {
         this.correct = true
 
         // display message
@@ -53,7 +60,17 @@ export default {
 
         // reset values
         this.reset()
+
+        // show hint after displaying results
+        this.hint()        
       }, 2000)
+    },
+    hint () {
+      let the = ''
+      if (this.country.region.toLowerCase() === 'americas') {
+        the = 'The'
+      }
+      this.message = `Hint: ${the} ${this.country.region}`
     },
     reset () {
       this.message = ''
@@ -65,7 +82,21 @@ export default {
     ...mapGetters(['country', 'countries', 'score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
-    }
+    },
+    backgroundImage () {
+      return 'backgroundImage: url(' + this.country.flag + ')'
+    },
+    messageType () {
+      // determine the color of the message text
+      let type = 'danger'
+      if (!this.correct && !this.didAnswer) {
+        type = 'primary'
+      } else if (this.correct) {
+        type = 'success'
+      }
+
+      return 'text-' + type
+    }    
   }
 }
 </script>
