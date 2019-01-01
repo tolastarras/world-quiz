@@ -5,6 +5,9 @@
       <div v-if="isFlagsCategory" class="row">
         <flags-category v-on:handle-response="handleResponse" v-on:update-score="updateScore" />
       </div>
+      <div v-else-if="isCountriesCategory" class="row">
+        <countries-category v-on:handle-response="handleResponse" v-on:update-score="updateScore" />
+      </div>
       <div v-else class="row">
         <capitals-category v-on:handle-response="handleResponse" v-on:update-score="updateScore" />
       </div>
@@ -19,6 +22,7 @@ import { mapGetters } from 'vuex'
 
 import FlagsCategory from '@/components/quiz/categories/FlagsCategory'
 import CapitalsCategory from '@/components/quiz/categories/CapitalsCategory'
+import CountriesCategory from '@/components/quiz/categories/Countries'
 import ScoreBoard from '@/components/ScoreBoard'
 import QuizOptions from './options/'
 
@@ -29,7 +33,8 @@ export default {
     ScoreBoard,
     QuizOptions,
     FlagsCategory,
-    CapitalsCategory
+    CapitalsCategory,
+    CountriesCategory
   },
   async mounted () {
     if (!localStorage.getItem('countries')) {
@@ -120,6 +125,9 @@ export default {
     ...mapGetters(['continent', 'category', 'score']),
     isFlagsCategory () {
       return this.category.toLowerCase() === 'flags'
+    },
+    isCountriesCategory () {
+      return this.category.toLowerCase() === 'countries'
     }
   }
 }

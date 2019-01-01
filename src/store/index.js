@@ -12,14 +12,15 @@ export default new Vuex.Store({
     continents: [
       'World',
       'Africa',
+      'Americas',
       'Asia',
       'Europe',
-      'Americas',
       'Oceania'
     ],
     categories: [
-      'Flags',
-      'Capitals'
+      'Capitals',
+      'Countries',
+      'Flags'
     ],
     country: {},
     countries: [],
