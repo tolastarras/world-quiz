@@ -1,5 +1,5 @@
 <template>
-  <div class="col">
+  <div class="col categories">
     <h2 class="mt-4">{{ country.capital }} is the capital of what country?</h2>
     <transition name="fade">
       <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>

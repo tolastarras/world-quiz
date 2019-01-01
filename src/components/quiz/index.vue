@@ -20,8 +20,8 @@
 import Axios from 'axios'
 import { mapGetters } from 'vuex'
 
-import FlagsCategory from '@/components/quiz/categories/FlagsCategory'
-import CapitalsCategory from '@/components/quiz/categories/CapitalsCategory'
+import FlagsCategory from '@/components/quiz/categories/Flags'
+import CapitalsCategory from '@/components/quiz/categories/Capitals'
 import CountriesCategory from '@/components/quiz/categories/Countries'
 import ScoreBoard from '@/components/ScoreBoard'
 import QuizOptions from './options/'

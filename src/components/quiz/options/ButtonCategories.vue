@@ -53,7 +53,7 @@ export default {
   }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 760px) {
   .btn-group {
     width: 100%;
 

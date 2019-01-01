@@ -1,5 +1,5 @@
 <template>
-  <div class="col">
+  <div class="col categories">
     <h2 class="mt-4">What country has this flag?</h2>
     <transition name="fade">
       <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
