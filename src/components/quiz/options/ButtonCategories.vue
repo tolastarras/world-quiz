@@ -22,9 +22,6 @@ export default {
     ...mapGetters(['category', 'categories'])
     // category () {
     //   return this.$store.getters.getCategory
-    // },
-    // categories () {
-    //   return this.$store.getters.getCategories
     // }
   }
 }

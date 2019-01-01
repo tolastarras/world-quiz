@@ -27,8 +27,12 @@ export default {
       correct: false
     }
   },
-  mounted () {
-    this.hint()
+  updated () {
+    console.log('update ...')
+    if (!this.message) {
+      console.log('show a default ...')
+      this.hint()
+    }
   },
   methods: {
     checkAnswer (e) {
@@ -57,6 +61,7 @@ export default {
         // reset values
         this.reset()
 
+        // show hint after displaying results
         this.hint()
       }, 2000)
     },
