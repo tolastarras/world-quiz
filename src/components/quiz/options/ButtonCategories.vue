@@ -38,9 +38,14 @@ export default {
   width: 100%;
 
   > li {
-    color: white;
+    color: lightgreen;
     border-bottom: 1px solid #ddd;
     padding: 6px;
+
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+    }
 
     &:last-child {
       border: none;

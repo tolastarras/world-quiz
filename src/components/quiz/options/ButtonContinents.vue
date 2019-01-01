@@ -34,9 +34,14 @@ export default {
   padding: 0 8px;
 
   > li {
-    color: white;
+    color: lightblue;
     border-bottom: 1px solid #ddd;
     padding: 6px;
+
+    &:hover {
+      cursor: pointer;
+      color: #fff;
+    }
 
     &:last-child {
       border: none;
