@@ -62,7 +62,7 @@ export default {
         this.reset()
 
         // show hint after displaying results
-        this.hint()        
+        this.hint()
       }, 2000)
     },
     hint () {
@@ -96,7 +96,7 @@ export default {
       }
 
       return 'text-' + type
-    }    
+    }
   }
 }
 </script>

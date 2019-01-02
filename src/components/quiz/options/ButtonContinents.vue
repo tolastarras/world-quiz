@@ -60,4 +60,10 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 320px) {
+  button {
+    font-size: 1.1em !important;
+  }
+}
 </style>

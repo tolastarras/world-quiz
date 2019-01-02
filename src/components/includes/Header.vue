@@ -1,11 +1,10 @@
 <template>
   <div class="jumbotron text-center">
     <div class="container">
-      <h1 class="display-4 text-light"><span>Take the </span>World Quiz</h1>
-      <h4 class="mb-4 pb-4 text-light">Test your knowledge!</h4>
+      <h1 class="display-4 mb-5 text-light"><span>Take the </span>World Quiz</h1>
     </div>
     <div class="bottom">
-      <h3 class="text-warning">{{ category }} of {{ continent }}</h3>
+      <h3 class="text-warning"><b>Test your knowledge of the </b> <span>{{ category }}</span> of <span>{{ continent }}</span></h3>
     </div>
   </div>
 </template>
@@ -16,7 +15,7 @@ export default {
     continent () {
       let continent = this.$store.getters.continent
 
-      if (continent.toLowerCase() === 'world') {
+      if (continent.toLowerCase() === 'world' || continent.toLowerCase() === 'americas') {
         return 'the ' + continent
       }
 
@@ -35,6 +34,18 @@ export default {
   border-radius: 0;
   position: relative;
 
+  h3 {
+    letter-spacing: 2px;
+
+    > b {
+      font-weight: normal;
+    }
+
+    > span {
+      color: lighten(#ffc107, 20);
+    }
+  }
+
   .bottom {
     position: absolute;
     left: 0;
@@ -45,12 +56,27 @@ export default {
   }
 }
 
-@media screen and (max-width: 415px) {
+@media screen and (max-width: 736px) {
   h1 {
-    font-size: 3.2em;
+    padding-bottom: .4em;
+  }
+
+  h3 {
+    font-size: 1.6em;
+  }
+}
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 3em;
+    padding-bottom: 1em;
+
     > span {
       display: none;
     }
+  }
+
+  h3 {
+    font-size: 1.3em;
   }
 }
 </style>

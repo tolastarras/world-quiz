@@ -27,11 +27,6 @@ export default {
       correct: false
     }
   },
-  mounted () {
-    if (!this.message) {
-      this.hint()
-    }
-  },
   methods: {
     checkAnswer (e) {
       // disable all buttons
@@ -66,14 +61,21 @@ export default {
     hint () {
       let the = ''
       if (this.country.region.toLowerCase() === 'americas') {
-        the = 'The'
+        the = 'the'
       }
-      this.message = `Hint: ${the} ${this.country.region}`
+      this.message = `Hint: ${this.country.name} is in ${the} ${this.country.region}`
     },
     reset () {
       this.message = ''
       this.didAnswer = false
       this.correct = false
+    }
+  },
+  watch: {
+    country () {
+      if (!this.message) {
+        this.hint()
+      }
     }
   },
   computed: {

@@ -13,4 +13,4 @@ https://restcountries.eu/
 4. remember selections on reload (check savvy-vuegram)
 5. update record based on category selected and not as ALL
 6. show loading flag while waiting
-7. refactor capitals and flags categories
+7. refactor capitals and flags categories (hint(), messageType(), mounted(), checkAnswer())

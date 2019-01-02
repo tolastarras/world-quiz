@@ -1,8 +1,8 @@
 <template>
   <div class="col categories">
-    <h2 class="mt-4">{{ country.capital }} is the capital of what country?</h2>
+    <h2 class="mt-4">{{ country.capital }} is the capital of?</h2>
     <transition name="fade">
-      <h4 class="message" :class="'text-' + (correct ? 'success' : 'danger')">{{ message }}</h4>
+      <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
 
     <div class="row">
@@ -26,6 +26,11 @@ export default {
       correct: false
     }
   },
+  mounted () {
+    if (!this.message) {
+      this.hint()
+    }
+  },  
   methods: {
     checkAnswer (e) {
       // disable all buttons
@@ -54,24 +59,45 @@ export default {
         this.reset()
       }, 2000)
     },
+    hint () {
+      let the = ''
+      if (this.country.region.toLowerCase() === 'americas') {
+        the = 'the'
+      }
+      this.message = `Hint: ${this.country.capital} is in ${the} ${this.country.region}`
+    },    
     reset () {
       this.message = ''
       this.didAnswer = false
       this.correct = false
     }
   },
+  watch: {
+    country () {
+      this.hint()
+    }
+  },
   computed: {
     ...mapGetters(['country', 'countries', 'score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
-    }
+    },
+    messageType () {
+      let type = 'danger'
+      if (!this.correct && !this.didAnswer) {
+        type = 'primary'
+      } else if (this.correct) {
+        type = 'success'
+      }
+
+      return 'text-' + type
+    }    
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .countries {
-
   > a {
     display: flex;
     align-items: center;
@@ -83,6 +109,34 @@ export default {
       margin-right: .5em;
       width: 70px;
       border: 1px solid white;
+    }
+  }
+}
+
+@media screen and (max-width: 415px) {
+  .categories {
+    h2 {
+      font-size: 2.2em;
+      line-height: .9em;
+      margin-bottom: .5em;
+    }
+    h4 {
+      font-size: 1em;
+      line-height: 1em;
+      margin-bottom: .5em;
+      font-style: italic;
+    }
+  }
+
+  .countries {
+    > a {
+      font-size: 1em !important;
+      line-height: 1em;
+
+      > img {
+        width: 45px;
+        margin-left: .4em;
+      }
     }
   }
 }
