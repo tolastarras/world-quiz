@@ -30,7 +30,7 @@ export default {
     if (!this.message) {
       this.hint()
     }
-  },  
+  },
   methods: {
     checkAnswer (e) {
       // disable all buttons
@@ -65,7 +65,7 @@ export default {
         the = 'the'
       }
       this.message = `Hint: ${this.country.capital} is in ${the} ${this.country.region}`
-    },    
+    },
     reset () {
       this.message = ''
       this.didAnswer = false
@@ -91,53 +91,16 @@ export default {
       }
 
       return 'text-' + type
-    }    
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+/* style in assets/scss/categories.scss */
 .countries {
   > a {
-    display: flex;
-    align-items: center;
-    font-size: 3em;
-    height: 3em;
-
-    > img {
-      margin-left: 1em;
-      margin-right: .5em;
-      width: 70px;
-      border: 1px solid white;
-    }
-  }
-}
-
-@media screen and (max-width: 415px) {
-  .categories {
-    h2 {
-      font-size: 2.2em;
-      line-height: .9em;
-      margin-bottom: .5em;
-    }
-    h4 {
-      font-size: 1em;
-      line-height: 1em;
-      margin-bottom: .5em;
-      font-style: italic;
-    }
-  }
-
-  .countries {
-    > a {
-      font-size: 1em !important;
-      line-height: 1em;
-
-      > img {
-        width: 45px;
-        margin-left: .4em;
-      }
-    }
+    justify-content: left;
   }
 }
 </style>

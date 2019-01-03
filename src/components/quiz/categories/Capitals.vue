@@ -63,13 +63,18 @@ export default {
       if (this.country.region.toLowerCase() === 'americas') {
         the = 'the'
       }
-      this.message = `Hint: ${this.country.name} is in ${the} ${this.country.region}`
+      this.message = `Hint: Country is in ${the} ${this.country.region}`
     },
     reset () {
       this.message = ''
       this.didAnswer = false
       this.correct = false
     }
+  },
+  created () {
+    // if (!this.message) {
+    //   this.hint()
+    // }
   },
   watch: {
     country () {

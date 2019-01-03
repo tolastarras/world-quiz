@@ -83,7 +83,7 @@ export default {
 
         // avoid duplicate keys
         if (countries.indexOf(records[index]) > -1) {
-          console.err(records[index].name + ' is already selected (choosing another)...')
+          console.log(records[index].name + ' is already selected (choosing another)...')
           i--
           continue
         }

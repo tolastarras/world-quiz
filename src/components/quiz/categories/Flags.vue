@@ -39,7 +39,6 @@ export default {
       this.didAnswer = true
 
       let answer = e.target.text.trim()
-      console.log('answer:', answer)
 
       if (answer === helper.formatCountryName(this.country.name)) {
         this.correct = true

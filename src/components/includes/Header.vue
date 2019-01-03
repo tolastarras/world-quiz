@@ -77,6 +77,7 @@ export default {
 
   h3 {
     font-size: 1.3em;
+    margin: 0 1em;
   }
 }
 </style>
