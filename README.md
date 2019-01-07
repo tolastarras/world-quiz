@@ -1,6 +1,9 @@
 # world-quiz
 Capitals of the world
 
+## Description
+Test your knowledge of the countries, capitals and flags of the world. This app uses VueJs for the front-end while getting data via a RESTful API.
+
 http://flag-icon-css.lip.is/game/capital/
 
 ## REST Countries
