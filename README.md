@@ -18,5 +18,5 @@ https://restcountries.eu/
 6. show loading flag while waiting
 7. refactor capitals and flags categories (hint(), messageType(), mounted(), checkAnswer())
 8. no white border around the nepali flag (reduce height as well)
-9. formatCountryName - IMPLEMENT (value = "Tanzania, United Republic of")
+9. formatCountryName - IMPLEMENT (value = "Tanzania, United Republic of") - SHOULD BE WORKING BUT TEST ***
 10. changing to category 'capitals' doesn't show hint (created and mounted show errors)
