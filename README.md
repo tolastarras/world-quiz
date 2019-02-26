@@ -15,8 +15,10 @@ https://restcountries.eu/
 3. choose questions (countries) from same continent to make it harder to guess
 4. remember selections on reload (check savvy-vuegram)
 5. update record based on category selected and not as ALL
-6. show loading flag while waiting
+6. show loading spinner while waiting for the next question
 7. refactor capitals and flags categories (hint(), messageType(), mounted(), checkAnswer())
 8. no white border around the nepali flag (reduce height as well)
 9. formatCountryName - IMPLEMENT (value = "Tanzania, United Republic of") - SHOULD BE WORKING BUT TEST ***
 10. changing to category 'capitals' doesn't show hint (created and mounted show errors)
+11. Don't allow same flags to repeat after at least an x amount of times.
+12. refactor store into multiple files

@@ -18,7 +18,7 @@
 
 <script>
 import Axios from 'axios'
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 import FlagsCategory from '@/components/quiz/categories/Flags'
 import CapitalsCategory from '@/components/quiz/categories/Capitals'
@@ -122,7 +122,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['continent', 'category', 'score']),
+    ...mapState(['category']),
+    ...mapGetters(['continent', 'score']),
     isFlagsCategory () {
       return this.category.toLowerCase() === 'flags'
     },

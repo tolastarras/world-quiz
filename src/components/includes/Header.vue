@@ -10,20 +10,11 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   computed: {
-    continent () {
-      let continent = this.$store.getters.continent
-
-      if (continent.toLowerCase() === 'world' || continent.toLowerCase() === 'americas') {
-        return 'the ' + continent
-      }
-
-      return continent
-    },
-    category () {
-      return this.$store.getters.category
-    }
+    ...mapGetters(['category', 'continent']),
   }
 }
 </script>

@@ -30,13 +30,13 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    [types.SET_CONTINENT] (state, payload) { state.continent = payload },
-    [types.SET_CATEGORY] (state, payload) { state.category = payload },
-    [types.SET_COUNTRY] (state, payload) { state.country = payload },
+    [types.SET_CONTINENT] (state, continent) { state.continent = continent },
+    [types.SET_CATEGORY] (state, category) { state.category = category },
+    [types.SET_COUNTRY] (state, country) { state.country = country },
     [types.SET_COUNTRIES] (state, payload) { state.countries = payload },
-    [types.UPDATE_SCORE] (state, payload) {
-      state.score = payload
-      localStorage.setItem('record', payload.record)
+    [types.UPDATE_SCORE] (state, score) {
+      state.score = score
+      localStorage.setItem('record', score.record)
     }
   },
   actions: {
@@ -51,27 +51,34 @@ export default new Vuex.Store({
 
       commit('UPDATE_SCORE', { streak: 0, record: localStorage.getItem('record') })
     },
-    setContinent ({ commit }, payload) {
-      commit('SET_CONTINENT', payload)
+    setContinent ({ commit }, continent) {
+      commit('SET_CONTINENT', continent)
     },
-    setCategory ({ commit }, payload) {
-      commit('SET_CATEGORY', payload)
+    setCategory ({ commit }, category) {
+      commit('SET_CATEGORY', category)
     },
-    setCountry ({ commit }, payload) {
-      commit('SET_COUNTRY', payload)
+    setCountry ({ commit }, country) {
+      commit('SET_COUNTRY', country)
     },
     setCountries ({ commit }, payload) {
       commit('SET_COUNTRIES', payload)
     },
-    updateScore ({ commit }, payload) {
-      commit('UPDATE_SCORE', payload)
+    updateScore ({ commit }, score) {
+      commit('UPDATE_SCORE', score)
     }
   },
   getters: {
+    // continent: state => {
+    //   let continent = state.continent.toLowerCase()
+    //   if (continent === 'world' || continent === 'americas') {
+    //     continent = 'the ' + continent
+    //   }
+
+    //   return continent
+    // },
+    category: state => state.category,
     continent: state => state.continent,
     continents: state => state.continents,
-    category: state => state.category,
-    categories: state => state.categories,
     country: state => state.country,
     countries: state => state.countries,
     score: state => state.score

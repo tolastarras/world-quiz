@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   methods: {
@@ -19,10 +19,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['category', 'categories'])
-    // category () {
-    //   return this.$store.getters.getCategory
-    // }
+    ...mapState(['categories']),
+    ...mapGetters(['category'])
   }
 }
 </script>

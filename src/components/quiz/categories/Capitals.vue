@@ -1,6 +1,5 @@
 <template>
   <div class="col categories">
-    <h2 class="mt-4">What is the capital of {{ country.name | format-country-name }}?</h2>
     <transition name="fade">
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
@@ -17,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -71,11 +70,6 @@ export default {
       this.correct = false
     }
   },
-  created () {
-    // if (!this.message) {
-    //   this.hint()
-    // }
-  },
   watch: {
     country () {
       if (!this.message) {
@@ -84,7 +78,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters(['country', 'countries', 'score']),
+    ...mapState(['countries', 'score']),
+    ...mapGetters(['country']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },
