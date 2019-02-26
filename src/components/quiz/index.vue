@@ -122,8 +122,9 @@ export default {
     }
   },
   computed: {
-    ...mapState(['category']),
-    ...mapGetters(['continent', 'score']),
+    ...mapState('category', ['category']),
+    ...mapState('continent', ['continent']),
+    ...mapGetters(['score']),
     isFlagsCategory () {
       return this.category.toLowerCase() === 'flags'
     },

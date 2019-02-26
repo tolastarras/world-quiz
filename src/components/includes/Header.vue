@@ -10,11 +10,15 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   computed: {
-    ...mapGetters(['category', 'continent']),
+    ...mapState('category', { cat: 'category' }),
+    ...mapGetters('continent', ['continent']),
+    category () {
+      return this.cat.toUpperCase()
+    }
   }
 }
 </script>
@@ -56,6 +60,7 @@ export default {
     font-size: 1.6em;
   }
 }
+
 @media screen and (max-width: 480px) {
   h1 {
     font-size: 3em;

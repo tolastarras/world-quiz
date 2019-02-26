@@ -1,7 +1,7 @@
 <template>
   <div class="btn-group">
     <button type="button" class="btn btn-success dropdown-toggle mb-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="fa fa-gamepad"></span> Category: <i>Find {{ category }}</i> <span class="caret"></span>
+      <span class="fa fa-gamepad"></span> Category: <i>Find {{ 'category' }}</i> <span class="caret"></span>
     </button>
     <ul class="dropdown-menu">
       <li @click="selectCategory" class="list-item" :key="category" v-for="category in categories">{{ category }}</li>
@@ -10,18 +10,17 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 export default {
   methods: {
-    selectCategory (e) {
-      this.$store.dispatch('setCategory', e.target.innerText)
+    ...mapActions('category', ['setCategory']),
+    selectCategory ({ target }) {
+      this.setCategory(target.innerText)
+      // this.$store.dispatch('category/setCategory', e.target.innerText)
     }
   },
-  computed: {
-    ...mapState(['categories']),
-    ...mapGetters(['category'])
-  }
+  computed: mapState('category', ['categories'])
 }
 </script>
 

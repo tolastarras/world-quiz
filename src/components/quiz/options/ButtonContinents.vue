@@ -10,19 +10,17 @@
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+
 export default {
   methods: {
-    selectContinent (e) {
-      this.$store.dispatch('setContinent', e.target.innerText)
+    ...mapActions('continent', ['setContinent']),
+    selectContinent ({ target }) {
+      this.setContinent(target.innerText)
     }
   },
   computed: {
-    continent () {
-      return this.$store.getters.continent
-    },
-    continents () {
-      return this.$store.getters.continents
-    }
+    ...mapState('continent', ['continent', 'continents'])
   }
 }
 </script>
