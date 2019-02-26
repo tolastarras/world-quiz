@@ -93,14 +93,20 @@ export default {
 
       this.setCountries(countries)
 
-      // debuggin ONLY
-      countries.map(country => console.log(country.name))
-      console.log('*************')
-
       // choose country from randomly selected countries
       let index = this.rand(QUIZ_CHOICES)
 
       this.setCountry(countries[index])
+
+      // DEBUGGING ONLY
+      this.showAnswer(countries, index)
+    },
+    showAnswer (countries, index) {
+      if (process.env.NODE_ENV === 'development') {
+        countries.map(country => console.log(country.name))
+        console.log('A: ' + JSON.stringify(countries[index]))
+        console.log('*************')
+      }
     },
     handleResponse () {
       // load new set of questions
