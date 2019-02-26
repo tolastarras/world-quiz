@@ -17,7 +17,6 @@
 </template>
 
 <script>
-import Axios from 'axios'
 import { mapState, mapGetters, mapActions } from 'vuex'
 
 import FlagsCategory from '@/components/quiz/categories/Flags'
@@ -25,6 +24,7 @@ import CapitalsCategory from '@/components/quiz/categories/Capitals'
 import CountriesCategory from '@/components/quiz/categories/Countries'
 import ScoreBoard from '@/components/ScoreBoard'
 import QuizOptions from './options/'
+import DataService from '@/services/DataService'
 
 const QUIZ_CHOICES = 4
 
@@ -39,7 +39,7 @@ export default {
   async mounted () {
     if (!localStorage.getItem('countries')) {
       // get records from api and load local storage
-      await Axios.get('https://restcountries.eu/rest/v2/all?fields=name;region;flag;capital')
+      await DataService.fetchData()
         .then(response => {
           localStorage.setItem('countries', JSON.stringify(response.data))
         })

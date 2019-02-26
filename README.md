@@ -23,3 +23,6 @@ https://restcountries.eu/
 10. changing to category 'capitals' doesn't show hint (created and mounted show errors)
 11. Don't allow same flags to repeat after at least an x amount of times.
 12. allow user to enable/disable hints
+13. move rand() to a helper mixin
+14. QUIZ_CHOICES move to a config file
+15. move await EventService.fetchData() to store
