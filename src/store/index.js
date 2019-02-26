@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import * as types from './mutation-types'
 import category from '@/store/modules/category'
 import continent from '@/store/modules/continent'
 import country from '@/store/modules/country'
@@ -21,7 +20,7 @@ export default new Vuex.Store({
     }
   },
   mutations: {
-    [types.UPDATE_SCORE] (state, score) {
+    UPDATE_SCORE (state, score) {
       state.score = score
       localStorage.setItem('record', score.record)
     }
@@ -35,7 +34,6 @@ export default new Vuex.Store({
       if (!localStorage.getItem('record')) {
         localStorage.setItem('record', 0)
       }
-
       commit('UPDATE_SCORE', { streak: 0, record: localStorage.getItem('record') })
     },
     updateScore ({ commit }, score) {
@@ -45,10 +43,12 @@ export default new Vuex.Store({
   getters: {
     score: state => state.score,
     getHint: (state, getters, rootState, rootGetters) => {
-      console.log('abc...')
-      let country = rootGetters['country/formatCountryName']
-
-      return `Hint: ${country} is in ${rootState.country.country.region}`
+      // let country = rootGetters['country/formatCountryName']
+      let continent = rootState.country.country.region
+      if (continent.toLowerCase() === 'americas') {
+        continent = continent.slice(0, -1)
+      }
+      return `Hint: This country is in ${continent}`
     }
   }
 })

@@ -57,6 +57,9 @@ export default {
 
         // reset values
         this.reset()
+
+        // show hint after displaying results
+        this.showHint()
       }, 2000)
     },
     reset () {
@@ -65,7 +68,7 @@ export default {
       this.correct = false
     },
     showHint () {
-      this.message = '' // this.hint()
+      this.message = this.getHint
     }
   },
   watch: {
@@ -75,7 +78,8 @@ export default {
   },
   computed: {
     ...mapState('country', ['country', 'countries']),
-    ...mapGetters(['score', 'hint']),
+    ...mapState(['score']),
+    ...mapGetters(['getHint']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },

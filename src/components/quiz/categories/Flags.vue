@@ -29,7 +29,7 @@ export default {
   },
   mounted () {
     if (!this.message) {
-      this.hint()
+      this.showHint()
     }
   },
   methods: {
@@ -60,7 +60,7 @@ export default {
         this.reset()
 
         // show hint after displaying results
-        this.hint()
+        this.showHint()
       }, 2000)
     },
     reset () {
@@ -68,14 +68,15 @@ export default {
       this.didAnswer = false
       this.correct = false
     },
-    hint () {
-      return 'hello world'
+    showHint () {
+      this.message = this.getHint
     }
   },
   computed: {
     ...mapState('country', ['country', 'countries']),
+    ...mapState(['score']),
+    ...mapGetters(['getHint']),
     ...mapGetters('country', ['formatCountryName']),
-    ...mapGetters(['getHint', 'score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },

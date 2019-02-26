@@ -4,6 +4,7 @@ Capitals of the world
 ## Description
 Test your knowledge of the countries, capitals and flags of the world. This app uses VueJs for the front-end while getting data via a RESTful API.
 
+## Credits
 http://flag-icon-css.lip.is/game/capital/
 
 ## REST Countries
@@ -21,4 +22,4 @@ https://restcountries.eu/
 9. formatCountryName - IMPLEMENT (value = "Tanzania, United Republic of") - SHOULD BE WORKING BUT TEST ***
 10. changing to category 'capitals' doesn't show hint (created and mounted show errors)
 11. Don't allow same flags to repeat after at least an x amount of times.
-12. refactor store into multiple files
+12. allow user to enable/disable hints

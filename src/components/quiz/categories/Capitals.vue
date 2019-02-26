@@ -1,5 +1,6 @@
 <template>
   <div class="col categories">
+    <h2 class="mt-4">What is the capital of {{ country.name }}?</h2>
     <transition name="fade">
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
@@ -63,7 +64,7 @@ export default {
       this.correct = false
     },
     showHint () {
-      // this.message = this.hint()
+      this.message = this.getHint
     }
   },
   watch: {
@@ -75,8 +76,9 @@ export default {
   },
   computed: {
     ...mapState('country', ['country', 'countries']),
+    ...mapState('notification', ['notification']),
     ...mapState(['score']),
-    ...mapGetters(['hint']),
+    ...mapGetters(['getHint']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },
