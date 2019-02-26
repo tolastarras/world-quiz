@@ -39,9 +39,7 @@ export default {
 
       let answer = e.target.text.trim()
 
-      // if (answer === helper.formatCountryName(this.country.name)) {
-      let val = 1
-      if (val === 1) {
+      if (answer === this.formatCountryName) {
         this.correct = true
 
         // display message
@@ -76,6 +74,7 @@ export default {
   },
   computed: {
     ...mapState('country', ['country', 'countries']),
+    ...mapGetters('country', ['formatCountryName']),
     ...mapGetters(['getHint', 'score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''

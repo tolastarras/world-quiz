@@ -21,7 +21,7 @@ export default {
     }
   },
   getters: {
-    formattedCountryName: state => {
+    formatCountryName: state => {
       return state.country.name.replace(/(.*)\s\((.*)\)/, '$2 $1').replace(/(.*),(.*)/, '$2 $1')
     }
   }

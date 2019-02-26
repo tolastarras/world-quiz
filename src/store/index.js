@@ -46,7 +46,7 @@ export default new Vuex.Store({
     score: state => state.score,
     getHint: (state, getters, rootState, rootGetters) => {
       console.log('abc...')
-      let country = rootGetters['country/formattedCountryName']
+      let country = rootGetters['country/formatCountryName']
 
       return `Hint: ${country} is in ${rootState.country.country.region}`
     }
