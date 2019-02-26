@@ -4,7 +4,7 @@
       <h1 class="display-4 mb-5 text-light"><span>Take the </span>World Quiz</h1>
     </div>
     <div class="bottom">
-      <h3 class="text-warning"><b>Test your knowledge of the </b> <span>{{ category }}</span> of <span>{{ continent }}</span></h3>
+      <h3 class="text-warning"><b>Test your knowledge of the </b> <span>{{ category }}</span> of <span>{{ formattedContinent }}</span></h3>
     </div>
   </div>
 </template>
@@ -15,7 +15,7 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapState('category', { cat: 'category' }),
-    ...mapGetters('continent', ['continent']),
+    ...mapGetters('continent', ['formattedContinent']),
     category () {
       return this.cat.toUpperCase()
     }

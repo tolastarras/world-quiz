@@ -18,7 +18,7 @@
 
 <script>
 import Axios from 'axios'
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 import FlagsCategory from '@/components/quiz/categories/Flags'
 import CapitalsCategory from '@/components/quiz/categories/Capitals'
@@ -56,6 +56,7 @@ export default {
     }
   },
   methods: {
+    ...mapActions('country', ['setCountry', 'setCountries']),
     rand (max) {
       return Math.floor(Math.random() * max)
     },
@@ -90,7 +91,7 @@ export default {
         countries.push(records[index])
       }
 
-      this.$store.dispatch('setCountries', countries)
+      this.setCountries(countries)
 
       // debuggin ONLY
       countries.map(country => console.log(country.name))
@@ -99,7 +100,7 @@ export default {
       // choose country from randomly selected countries
       let index = this.rand(QUIZ_CHOICES)
 
-      this.$store.dispatch('setCountry', countries[index])
+      this.setCountry(countries[index])
     },
     handleResponse () {
       // load new set of questions

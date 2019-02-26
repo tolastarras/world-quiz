@@ -22,7 +22,7 @@ export default {
     }
   },
   getters: {
-    continent: state => {
+    formattedContinent: state => {
       let continent = state.continent.toLowerCase()
 
       if (continent === 'world' || continent === 'americas') {

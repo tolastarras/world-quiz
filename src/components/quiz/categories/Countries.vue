@@ -16,7 +16,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -28,7 +28,7 @@ export default {
   },
   mounted () {
     if (!this.message) {
-      this.hint()
+      this.showHint()
     }
   },
   methods: {
@@ -59,26 +59,23 @@ export default {
         this.reset()
       }, 2000)
     },
-    hint () {
-      let the = ''
-      if (this.country.region.toLowerCase() === 'americas') {
-        the = 'the'
-      }
-      this.message = `Hint: ${this.country.capital} is in ${the} ${this.country.region}`
-    },
     reset () {
       this.message = ''
       this.didAnswer = false
       this.correct = false
+    },
+    showHint () {
+      this.message = '' // this.hint()
     }
   },
   watch: {
     country () {
-      this.hint()
+      this.showHint()
     }
   },
   computed: {
-    ...mapGetters(['country', 'countries', 'score']),
+    ...mapState('country', ['country', 'countries']),
+    ...mapGetters(['score', 'hint']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },

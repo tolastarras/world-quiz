@@ -17,8 +17,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-import helper from '@/helpers/'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -40,7 +39,9 @@ export default {
 
       let answer = e.target.text.trim()
 
-      if (answer === helper.formatCountryName(this.country.name)) {
+      // if (answer === helper.formatCountryName(this.country.name)) {
+      let val = 1
+      if (val === 1) {
         this.correct = true
 
         // display message
@@ -64,21 +65,18 @@ export default {
         this.hint()
       }, 2000)
     },
-    hint () {
-      let the = ''
-      if (this.country.region.toLowerCase() === 'americas') {
-        the = 'The'
-      }
-      this.message = `Hint: ${the} ${this.country.region}`
-    },
     reset () {
       this.message = ''
       this.didAnswer = false
       this.correct = false
+    },
+    hint () {
+      return 'hello world'
     }
   },
   computed: {
-    ...mapGetters(['country', 'countries', 'score']),
+    ...mapState('country', ['country', 'countries']),
+    ...mapGetters(['getHint', 'score']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },
@@ -99,7 +97,3 @@ export default {
   }
 }
 </script>
-
-<style>
-/* style in assets/scss/categories.scss */
-</style>

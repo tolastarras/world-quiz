@@ -4,25 +4,23 @@ import Vuex from 'vuex'
 import * as types from './mutation-types'
 import category from '@/store/modules/category'
 import continent from '@/store/modules/continent'
+import country from '@/store/modules/country'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   modules: {
     category,
-    continent
+    continent,
+    country
   },
   state: {
-    country: {},
-    countries: [],
     score: {
       streak: 0,
       record: 0
     }
   },
   mutations: {
-    [types.SET_COUNTRY] (state, country) { state.country = country },
-    [types.SET_COUNTRIES] (state, payload) { state.countries = payload },
     [types.UPDATE_SCORE] (state, score) {
       state.score = score
       localStorage.setItem('record', score.record)
@@ -40,20 +38,17 @@ export default new Vuex.Store({
 
       commit('UPDATE_SCORE', { streak: 0, record: localStorage.getItem('record') })
     },
-    setCountry ({ commit }, country) {
-      commit('SET_COUNTRY', country)
-    },
-    setCountries ({ commit }, payload) {
-      commit('SET_COUNTRIES', payload)
-    },
     updateScore ({ commit }, score) {
       commit('UPDATE_SCORE', score)
     }
   },
   getters: {
-    continents: state => state.continents,
-    country: state => state.country,
-    countries: state => state.countries,
-    score: state => state.score
+    score: state => state.score,
+    getHint: (state, getters, rootState, rootGetters) => {
+      console.log('abc...')
+      let country = rootGetters['country/formattedCountryName']
+
+      return `Hint: ${country} is in ${rootState.country.country.region}`
+    }
   }
 })

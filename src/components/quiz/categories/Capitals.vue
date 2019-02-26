@@ -36,7 +36,7 @@ export default {
       if (answer === this.country.capital) {
         this.correct = true
 
-        // display message
+        // display success message
         this.message = `Congrats! ${answer} is correct`
         this.$emit('update-score', true)
       } else {
@@ -54,32 +54,29 @@ export default {
         this.reset()
 
         // show hint after displaying results
-        this.hint()
+        this.showHint()
       }, 2000)
-    },
-    hint () {
-      let the = ''
-      if (this.country.region.toLowerCase() === 'americas') {
-        the = 'the'
-      }
-      this.message = `Hint: Country is in ${the} ${this.country.region}`
     },
     reset () {
       this.message = ''
       this.didAnswer = false
       this.correct = false
+    },
+    showHint () {
+      // this.message = this.hint()
     }
   },
   watch: {
     country () {
       if (!this.message) {
-        this.hint()
+        this.showHint()
       }
     }
   },
   computed: {
-    ...mapState(['countries', 'score']),
-    ...mapGetters(['country']),
+    ...mapState('country', ['country', 'countries']),
+    ...mapState(['score']),
+    ...mapGetters(['hint']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },
@@ -104,7 +101,3 @@ export default {
   }
 }
 </script>
-
-<style>
-/* style in assets/scss/categories.scss */
-</style>
