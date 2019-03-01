@@ -6,6 +6,7 @@ Test your knowledge of the countries, capitals and flags of the world. This app 
 
 ## Credits
 http://flag-icon-css.lip.is/game/capital/
+https://dev.to/lynnewritescode/my-scss-setup-within-a-vue-cli-3-project-4jan
 
 ## REST Countries
 https://restcountries.eu/

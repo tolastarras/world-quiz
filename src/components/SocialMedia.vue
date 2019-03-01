@@ -1,5 +1,5 @@
 <template>
-  <div class="social-buttons">
+  <div class="social-buttons mb-2">
     <a href="#">Instagram</a> |
     <a href="#">Twitter</a> |
     <a href="#">Facebook</a> |
@@ -15,13 +15,15 @@ export default {
 
 <style lang="scss" scoped>
 .social-buttons {
-  color: #ccc;
+  font-size: 1rem;
 
   a {
-    color: #ccc;
+    color: $color3;
+    padding: 0 0.5rem;
 
     &:hover {
-      color: white;
+      color: $color2;
+      text-decoration: none;
     }
   }
 }

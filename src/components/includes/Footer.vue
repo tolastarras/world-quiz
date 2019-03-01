@@ -1,7 +1,7 @@
 <template>
   <footer class="footer">
     <div class="container">
-      <social-media v-show="false" />
+      <social-media v-show="showSocialMedia" />
       <p>
         &copy; 2018 - World Quiz. All rights reserved.
       </p>
@@ -13,6 +13,11 @@
 import SocialMedia from '@/components/SocialMedia'
 
 export default {
+  data () {
+    return {
+      showSocialMedia: false
+    }
+  },
   components: {
     SocialMedia
   }
@@ -20,12 +25,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-footer {
-  text-align: center;
-  opacity: .8;
-  padding: 50px;
-  background: linear-gradient(90deg,#f4c01a,#0d6632);
-  color: #ccc;
-  font-size: 1.2em;
-}
+@import '@/styles/components/footer.scss';
 </style>

@@ -27,12 +27,12 @@ button i {
   width: 100%;
 
   > li {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid $color4;
     padding: 6px;
 
     &:hover {
       cursor: pointer;
-      color: #fff;
+      color: $color2;
     }
 
     &:last-child {
