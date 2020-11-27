@@ -23,10 +23,10 @@ export default {
   },
   getters: {
     formattedContinent: state => {
-      let continent = state.continent.toLowerCase()
+      let continent = state.continent
 
-      if (continent === 'world' || continent === 'americas') {
-        continent = 'the ' + continent
+      if (['World', 'Americas'].includes(continent)) {
+        continent = `the ${continent}`
       }
 
       return continent.toUpperCase()

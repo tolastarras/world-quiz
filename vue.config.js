@@ -1,7 +1,7 @@
 const path = require('path')
 
 module.exports = {
-  baseUrl: '/projects/world-quiz/',
+  publicPath: '/projects/world-quiz/',
   pluginOptions: {
     'style-resources-loader': {
       preProcessor: 'scss',
