@@ -125,13 +125,13 @@ export default {
         streak = 0
       }
 
-      this.$store.dispatch('updateScore', { streak, record })
+      this.$store.dispatch('score/updateScore', { streak, record })
     }
   },
   computed: {
     ...mapState('category', ['category']),
     ...mapState('continent', ['continent']),
-    ...mapGetters(['score']),
+    ...mapGetters('score', ['score']),
     isFlagsCategory () {
       return this.category.toLowerCase() === 'flags'
     },

@@ -4,7 +4,6 @@
     <transition name="fade">
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
-
     <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage"></div>
     <div class="row">
       <div class="countries offset-md-3 col-md-6">
@@ -75,7 +74,7 @@ export default {
   computed: {
     ...mapState('country', ['country', 'countries']),
     ...mapState(['score']),
-    ...mapGetters(['getHint']),
+    ...mapGetters('score', ['getHint']),
     ...mapGetters('country', ['formatCountryName']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''

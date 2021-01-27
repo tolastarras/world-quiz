@@ -1,10 +1,22 @@
 <template>
   <div class="btn-group">
-    <button type="button" class="btn btn-success dropdown-toggle mb-2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-      <span class="fa fa-gamepad"></span> Category: <i>Find {{ category }}</i> <span class="caret"></span>
+    <button
+      type="button"
+      class="btn btn-success dropdown-toggle mb-2"
+      data-toggle="dropdown" aria-haspopup="true"
+      aria-expanded="false"
+    >
+      Category: Find {{ category }}
     </button>
     <ul class="dropdown-menu">
-      <li @click="selectCategory" class="list-item" :key="category" v-for="category in categories">{{ category }}</li>
+      <li
+        v-for="category in categories"
+        :key="category"
+        class="list-item"
+        @click="selectCategory"
+      >
+        {{ category }}
+      </li>
     </ul>
   </div>
 </template>

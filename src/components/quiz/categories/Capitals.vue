@@ -5,10 +5,16 @@
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
 
-    <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage"></div>
+    <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage" />
     <div class="row">
       <div class="countries offset-md-3 col-md-6">
-        <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">
+        <a
+          v-for="country in countries"
+          :key="country.name"
+          class="btn btn-primary btn-block text-light"
+          :class="disableButton"
+          @click="checkAnswer"
+        >
           {{ country.capital | nocapital }}
         </a>
       </div>
@@ -75,10 +81,13 @@ export default {
     }
   },
   computed: {
-    ...mapState('country', ['country', 'countries']),
-    ...mapState('notification', ['notification']),
-    ...mapState(['score']),
-    ...mapGetters(['getHint']),
+    ...mapState({
+      country: state => state.country.country,
+      countries: state => state.country.countries,
+      notification: state => state.notification.notification,
+      score: state => state.score.score
+    }),
+    ...mapGetters('score', ['getHint']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },

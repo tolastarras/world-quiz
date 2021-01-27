@@ -1,10 +1,16 @@
 <template>
-  <div class="jumbotron text-center">
+  <div class="header pt-3 text-center bg-primary">
     <div class="container">
-      <h1 class="display-4 mb-5 text-light"><span>Take the </span>World Quiz</h1>
+      <h1 class="text-light">
+        <span>Take the </span>World Quiz
+      </h1>
     </div>
-    <div class="bottom">
-      <h3 class="text-warning"><b>Test your knowledge of the </b> <span>{{ category }}</span> of <span>{{ formattedContinent }}</span></h3>
+    <div class="bottom py-2">
+      <h3 class="text-warning lead mb-0">
+        <b class="font-weight-normal">Test your knowledge of the </b>
+        <span class="font-weight-bold text-uppercase">{{ category }}</span> of
+        <span class="font-weight-bold text-uppercase">{{ formattedContinent }}</span>
+      </h3>
     </div>
   </div>
 </template>
@@ -13,42 +19,17 @@
 import { mapState, mapGetters } from 'vuex'
 
 export default {
+  name: 'AppHeader',
   computed: {
-    ...mapState('category', { cat: 'category' }),
-    ...mapGetters('continent', ['formattedContinent']),
-    category () {
-      return this.cat.toUpperCase()
-    }
+    ...mapState('category', ['category']),
+    ...mapGetters('continent', ['formattedContinent'])
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.jumbotron {
-  background: linear-gradient(90deg,#0d6632,#f4c01a);
-  border-radius: 0;
-  position: relative;
-
-  h3 {
-    letter-spacing: 2px;
-
-    > b {
-      font-weight: normal;
-    }
-
-    > span {
-      color: lighten(#ffc107, 20);
-    }
-  }
-
-  .bottom {
-    position: absolute;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    padding: 18px 0;
-    background-color: rgba(0,0,0,.2);
-  }
+.bottom {
+  background-color: rgba($color1, 0.1);
 }
 
 @media screen and (max-width: 736px) {

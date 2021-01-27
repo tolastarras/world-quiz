@@ -3,7 +3,7 @@
     <div class="offset-md-3 col-md-6">
       <div class="row">
         <div class="col-md-6">
-          <div class="score text-uppercase mb-3">
+          <div class="card text-uppercase py-3">
             <h3>Streak</h3>
             <div class="display-3 text-success">
               <strong>{{ score.streak }}</strong>
@@ -11,7 +11,7 @@
           </div>
         </div>
         <div class="col-md-6">
-          <div class="score text-uppercase">
+          <div class="card text-uppercase py-3">
             <h3>Record</h3>
             <div class="display-3 text-primary">
               <strong>{{ score.record }}</strong>
@@ -28,15 +28,6 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'ScoreBoard',
-  computed: mapState(['score'])
+  computed: mapState('score', ['score'])
 }
 </script>
-
-<style scoped>
-  .score {
-    border: 1px solid #aaa;
-    border-radius: 4px;
-    padding: 1em 0 !important;
-    background: #fff;
-  }
-</style>

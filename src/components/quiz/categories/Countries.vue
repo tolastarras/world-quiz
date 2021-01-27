@@ -79,7 +79,7 @@ export default {
   computed: {
     ...mapState('country', ['country', 'countries']),
     ...mapState(['score']),
-    ...mapGetters(['getHint']),
+    ...mapGetters('score', ['getHint']),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },

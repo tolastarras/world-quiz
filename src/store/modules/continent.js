@@ -29,7 +29,7 @@ export default {
         continent = `the ${continent}`
       }
 
-      return continent.toUpperCase()
+      return continent
     }
   }
 }

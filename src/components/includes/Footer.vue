@@ -1,9 +1,9 @@
 <template>
-  <footer class="footer">
+  <footer class="bg-primary">
     <div class="container">
       <social-media v-show="showSocialMedia" />
-      <p>
-        &copy; 2018 - World Quiz. All rights reserved.
+      <p class="text-center mb-0 py-2 text-white-50">
+        &copy; {{ new Date().getFullYear() }} - World Quiz. All rights reserved.
       </p>
     </div>
   </footer>
@@ -13,6 +13,7 @@
 import SocialMedia from '@/components/SocialMedia'
 
 export default {
+  name: 'AppFooter',
   data () {
     return {
       showSocialMedia: false
@@ -23,7 +24,3 @@ export default {
   }
 }
 </script>
-
-<style lang="scss" scoped>
-@import '@/styles/components/_footer';
-</style>
