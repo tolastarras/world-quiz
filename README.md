@@ -5,8 +5,8 @@ Capitals of the world
 Test your knowledge of the countries, capitals and flags of the world. This app uses VueJs for the front-end while getting data via a RESTful API.
 
 ## Credits
-http://flag-icon-css.lip.is/game/capital/
-https://dev.to/lynnewritescode/my-scss-setup-within-a-vue-cli-3-project-4jan
+- http://flag-icon-css.lip.is/game/capital/
+- https://dev.to/lynnewritescode/my-scss-setup-within-a-vue-cli-3-project-4jan
 
 ## REST Countries
 https://restcountries.eu/
