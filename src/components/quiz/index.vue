@@ -1,5 +1,5 @@
 <template>
-  <div class="container my-5">
+  <div class="quiz-container my-5">
     <quiz-options />
     <div class="text-center">
       <div v-if="isFlagsCategory" class="row">
@@ -137,7 +137,17 @@ export default {
     },
     isCountriesCategory () {
       return this.category.toLowerCase() === 'countries'
+    },
+    verticalMarginClasses () {
+      console.log(this.$mq)
+      return this.$mq === 'mobile' || this.$mq === 'tablet' ? 'my-5' : 'my-5'
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.quiz-container {
+  padding: 5px;
+}
+</style>

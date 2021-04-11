@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <header-section />
-    <div class="container">
+    <div>
       <world-quiz />
     </div>
     <footer-section />
