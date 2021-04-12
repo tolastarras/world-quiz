@@ -1,3 +1,5 @@
+import { formatCountryName } from '@/utils/format-string'
+
 export default {
   namespaced: true,
   state: {
@@ -21,8 +23,6 @@ export default {
     }
   },
   getters: {
-    formatCountryName: state => {
-      return state.country.name.replace(/(.*)\s\((.*)\)/, '$2 $1').replace(/(.*),(.*)/, '$2 $1')
-    }
+    formattedCountryName: state => formatCountryName(state.country.name)
   }
 }

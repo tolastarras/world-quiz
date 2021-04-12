@@ -4,11 +4,17 @@
     <transition name="fade">
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
-
     <div class="row">
       <div class="countries offset-md-3 col-md-6">
-        <a @click="checkAnswer" :key="country.capital" v-for="country in countries" class="btn btn-primary btn-block text-light text-left" :class="disableButton">
-          <img :src="country.flag"> {{ country.name | format-country-name }}
+        <a
+          v-for="country in countries"
+          :key="country.capital"
+          class="btn btn-primary btn-block text-light text-left"
+          :class="disableButton"
+          @click="checkAnswer"
+        >
+          <img :src="country.flag" alt="country flag" />
+          {{ country.name | formatCountryName }}
         </a>
       </div>
     </div>
@@ -17,6 +23,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import { formatCountryName } from '@/utils/format-string'
 
 export default {
   name: 'Countries',
@@ -25,6 +32,9 @@ export default {
     didAnswer: false,
     correct: false
   }),
+  filters: {
+    formatCountryName
+  },
   mounted () {
     if (!this.message) {
       this.showHint()

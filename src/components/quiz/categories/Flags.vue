@@ -1,22 +1,23 @@
 <template>
-  <div class="col categories">
+  <div>
     <h2 class="mt-4">What country has this flag?</h2>
     <transition name="fade">
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
-    <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage"></div>
-    <div class="row">
-      <div class="countries offset-md-3 col-md-6">
-        <a @click="checkAnswer" :key="country.name" v-for="country in countries" class="btn btn-primary btn-block text-light" :class="disableButton">
-          {{ country.name | format-country-name }}
-        </a>
-      </div>
-    </div>
+    <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage" />
+    <ui-button
+      v-for="country in countries"
+      :key="country.name"
+      :text="country.name"
+      :disabled="didAnswer"
+      @check-answer="checkAnswer"
+    />
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import { UiButton } from '@/components/ui'
 
 export default {
   name: 'Flags',
@@ -25,19 +26,20 @@ export default {
     didAnswer: false,
     correct: false
   }),
+  components: {
+    UiButton
+  },
   mounted () {
     if (!this.message) {
       this.showHint()
     }
   },
   methods: {
-    checkAnswer (e) {
+    checkAnswer (answer) {
       // disable all buttons
       this.didAnswer = true
 
-      let answer = e.target.text.trim()
-
-      if (answer === this.formatCountryName) {
+      if (answer === this.formattedCountryName) {
         this.correct = true
 
         // display message
@@ -71,10 +73,15 @@ export default {
     }
   },
   computed: {
-    ...mapState('country', ['country', 'countries']),
-    ...mapState(['score']),
-    ...mapGetters('score', ['getHint']),
-    ...mapGetters('country', ['formatCountryName']),
+    ...mapState({
+      country: state => state.country.country,
+      countries: state => state.country.countries,
+      score: state => state.score.score
+    }),
+    ...mapGetters({
+      getHint: 'score/getHint',
+      formattedCountryName: 'country/formattedCountryName'
+    }),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },

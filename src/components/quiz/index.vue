@@ -9,25 +9,22 @@
       @select-region="selectContinent"
     />
     <div class="text-center">
-      <div v-if="isFlagsCategory" class="row">
-        <flags-category
-          @handle-response="handleResponse"
-          @update-score="updateTotal"
-        />
-      </div>
-      <div v-else-if="isCountriesCategory" class="row">
-        <countries-category
-          @handle-response="handleResponse"
-          @update-score="updateTotal"
-        />
-      </div>
-      <div v-else class="row">
-        <capitals-category
-          @handle-response="handleResponse"
-          @update-score="updateTotal"
-        />
-      </div>
-      <score-board />
+      <flags-category
+        v-if="isFlagsCategory"
+        @handle-response="handleResponse"
+        @update-score="updateTotal"
+      />
+      <countries-category
+        v-else-if="isCountriesCategory"
+        @handle-response="handleResponse"
+        @update-score="updateTotal"
+      />
+      <capitals-category
+        v-else
+        @handle-response="handleResponse"
+        @update-score="updateTotal"
+      />
+      <score-board :score="score" />
     </div>
   </div>
 </template>
@@ -35,22 +32,19 @@
 <script>
 import { mapState, mapActions } from 'vuex'
 
-import FlagsCategory from '@/components/quiz/categories/Flags'
-import CapitalsCategory from '@/components/quiz/categories/Capitals'
-import CountriesCategory from '@/components/quiz/categories/Countries'
-import ScoreBoard from '@/components/ScoreBoard'
-import QuizOptions from './options/'
 import DataService from '@/services/DataService'
+import ScoreBoard from '@/components/quiz/score/ScoreBoard'
+import QuizOptions from './options/'
 
-const QUIZ_CHOICES = 4
+const QUIZ_CHOICES = 3
 
 export default {
   components: {
     ScoreBoard,
     QuizOptions,
-    FlagsCategory,
-    CapitalsCategory,
-    CountriesCategory
+    FlagsCategory: () => import('./categories/Flags'),
+    CapitalsCategory: () => import('./categories/Capitals'),
+    CountriesCategory: () => import('./categories/Countries')
   },
   async mounted () {
     if (!localStorage.getItem('countries')) {

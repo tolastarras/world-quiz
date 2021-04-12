@@ -1,29 +1,23 @@
 <template>
-  <div class="col categories">
+  <div>
     <h2 class="mt-4">What is the capital of {{ country.name }}?</h2>
     <transition name="fade">
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
-
     <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage" />
-    <div class="row">
-      <div class="countries offset-md-3 col-md-6">
-        <a
-          v-for="country in countries"
-          :key="country.name"
-          class="btn btn-primary btn-block text-light"
-          :class="disableButton"
-          @click="checkAnswer"
-        >
-          {{ country.capital | nocapital }}
-        </a>
-      </div>
-    </div>
+    <ui-button
+      v-for="country in countries"
+      :key="country.name"
+      :text="country.capital | nocapital"
+      :disabled="didAnswer"
+      @check-answer="checkAnswer"
+    />
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import { UiButton } from '@/components/ui'
 
 export default {
   name: 'Capitals',
@@ -32,12 +26,13 @@ export default {
     didAnswer: false,
     correct: false
   }),
+  components: {
+    UiButton
+  },
   methods: {
-    checkAnswer (e) {
+    checkAnswer (answer) {
       // disable all buttons
       this.didAnswer = true
-
-      let answer = e.target.text.trim()
 
       if (answer === this.country.capital) {
         this.correct = true

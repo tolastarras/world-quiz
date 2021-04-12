@@ -20,10 +20,12 @@ https://restcountries.eu/
 6. show loading spinner while waiting for the next question
 7. refactor capitals and flags categories (hint(), messageType(), mounted(), checkAnswer())
 8. no white border around the nepali flag (reduce height as well)
-9. formatCountryName - IMPLEMENT (value = "Tanzania, United Republic of") - SHOULD BE WORKING BUT TEST ***
+9. Check countries: Palestine, State of && Saint Martin (French part) => French Saint Martin or just Saint Martin && Sint Maarten (Dutch part)
 10. changing to category 'capitals' doesn't show hint (created and mounted show errors)
 11. Don't allow same flags to repeat after at least an x amount of times.
 12. allow user to enable/disable hints
 13. move rand() to a helper mixin
 14. QUIZ_CHOICES move to a config file
 15. move await EventService.fetchData() to store
+16. Add json cities by country to make it harder to guess
+17. Remove bootstrap, jquery and popper to make the app lighter
