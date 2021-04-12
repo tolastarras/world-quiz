@@ -28,9 +28,9 @@ export default {
     }
   },
   getters: {
-    score: state => state.score,
     getHint: (state, getters, rootState, rootGetters) => {
       let continent = rootState.country.country.region
+      console.log('continent', rootState)
       if (continent.toLowerCase() === 'americas') {
         continent = continent.slice(0, -1)
       }

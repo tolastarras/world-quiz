@@ -19,13 +19,12 @@
 import { mapState, mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {
-      message: '',
-      didAnswer: false,
-      correct: false
-    }
-  },
+  name: 'Flags',
+  data: () => ({
+    message: '',
+    didAnswer: false,
+    correct: false
+  }),
   mounted () {
     if (!this.message) {
       this.showHint()

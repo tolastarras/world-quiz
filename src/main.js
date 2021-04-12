@@ -1,6 +1,4 @@
 import Vue from 'vue'
-import VueMq from 'vue-mq'
-
 import App from './App.vue'
 import router from './router'
 import store from './store/'
@@ -12,18 +10,13 @@ Vue.config.productionTip = false
 
 // global filter
 Vue.filter('format-country-name', value => {
-  // str = "Korea (Democratic People's Republic of)"
+  // value = "Korea (Democratic People's Republic of)"
+  // value = "Virgin Islands (U.S.)"
+  // value = 'Micronesia (Federated States of)'
+  // value = 'Iran (Islamic Republic of)'
+  // value = 'Macedonia (the former Yugoslav Republic of)
   if (!value) return ''
   return value.replace(/(.*)\s\((.*)\)/, '$2 $1')
-})
-
-Vue.use(VueMq, {
-  breakpoints: {
-    mobile: 450,
-    tablet: 900,
-    laptop: 1250,
-    desktop: Infinity
-  }
 })
 
 new Vue({

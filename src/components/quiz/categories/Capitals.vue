@@ -26,13 +26,12 @@
 import { mapState, mapGetters } from 'vuex'
 
 export default {
-  data () {
-    return {
-      message: '',
-      didAnswer: false,
-      correct: false
-    }
-  },
+  name: 'Capitals',
+  data: () => ({
+    message: '',
+    didAnswer: false,
+    correct: false
+  }),
   methods: {
     checkAnswer (e) {
       // disable all buttons

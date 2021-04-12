@@ -1,18 +1,53 @@
 <template>
   <div class="text-center">
-    <button-continents />
-    <button-categories />
+    <select-button
+      title="Region"
+      :option="continent"
+      :options="continents"
+      @select-option="selectRegion"
+    />
+    <select-button
+      title="Category"
+      :option="category"
+      :options="categories"
+      @select-option="selectCategory"
+    />
   </div>
 </template>
 
 <script>
-import ButtonContinents from './ButtonContinents'
-import ButtonCategories from './ButtonCategories'
+import SelectButton from './SelectButton'
 
 export default {
+  name: 'QuizOptions',
+  props: {
+    category: {
+      type: String,
+      default: ''
+    },
+    categories: {
+      type: Array,
+      default: () => []
+    },
+    continent: {
+      type: String,
+      default: ''
+    },
+    continents: {
+      type: Array,
+      default: () => []
+    }
+  },
+  methods: {
+    selectRegion (region) {
+      this.$emit('select-region', region)
+    },
+    selectCategory (category) {
+      this.$emit('select-category', category)
+    }
+  },
   components: {
-    ButtonContinents,
-    ButtonCategories
+    SelectButton
   }
 }
 </script>

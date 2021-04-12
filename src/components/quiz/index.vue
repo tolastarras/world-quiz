@@ -1,15 +1,31 @@
 <template>
   <div class="quiz-container my-5">
-    <quiz-options />
+    <quiz-options
+      :category="category"
+      :categories="categories"
+      :continent="continent"
+      :continents="continents"
+      @select-category="selectCategory"
+      @select-region="selectContinent"
+    />
     <div class="text-center">
       <div v-if="isFlagsCategory" class="row">
-        <flags-category v-on:handle-response="handleResponse" v-on:update-score="updateScore" />
+        <flags-category
+          @handle-response="handleResponse"
+          @update-score="updateTotal"
+        />
       </div>
       <div v-else-if="isCountriesCategory" class="row">
-        <countries-category v-on:handle-response="handleResponse" v-on:update-score="updateScore" />
+        <countries-category
+          @handle-response="handleResponse"
+          @update-score="updateTotal"
+        />
       </div>
       <div v-else class="row">
-        <capitals-category v-on:handle-response="handleResponse" v-on:update-score="updateScore" />
+        <capitals-category
+          @handle-response="handleResponse"
+          @update-score="updateTotal"
+        />
       </div>
       <score-board />
     </div>
@@ -17,7 +33,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapActions } from 'vuex'
 
 import FlagsCategory from '@/components/quiz/categories/Flags'
 import CapitalsCategory from '@/components/quiz/categories/Capitals'
@@ -56,7 +72,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions('country', ['setCountry', 'setCountries']),
+    ...mapActions({
+      setCountry: 'country/setCountry',
+      setCountries: 'country/setCountries',
+      setContinent: 'continent/setContinent',
+      setCategory: 'category/setCategory',
+      updateScore: 'score/updateScore'
+    }),
     rand (max) {
       return Math.floor(Math.random() * max)
     },
@@ -112,7 +134,7 @@ export default {
       // load new set of questions
       this.questions()
     },
-    updateScore (correctAnswer) {
+    updateTotal (correctAnswer) {
       let streak = this.score.streak
       let record = this.score.record
 
@@ -125,22 +147,30 @@ export default {
         streak = 0
       }
 
-      this.$store.dispatch('score/updateScore', { streak, record })
+      this.updateScore({ streak, record })
+    },
+    selectCategory (value) {
+      this.setCategory(value)
+    },
+    selectContinent (value) {
+      this.setContinent(value)
     }
   },
   computed: {
-    ...mapState('category', ['category']),
-    ...mapState('continent', ['continent']),
-    ...mapGetters('score', ['score']),
+    ...mapState({
+      category: state => state.category.category,
+      categories: state => state.category.categories,
+      continent: state => state.continent.continent,
+      continents: state => state.continent.continents,
+      country: state => state.country.country,
+      countries: state => state.country.countries,
+      score: state => state.score.score
+    }),
     isFlagsCategory () {
       return this.category.toLowerCase() === 'flags'
     },
     isCountriesCategory () {
       return this.category.toLowerCase() === 'countries'
-    },
-    verticalMarginClasses () {
-      console.log(this.$mq)
-      return this.$mq === 'mobile' || this.$mq === 'tablet' ? 'my-5' : 'my-5'
     }
   }
 }
