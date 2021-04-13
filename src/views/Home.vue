@@ -9,8 +9,7 @@
 </template>
 
 <script>
-import HeaderSection from '@/components/includes/Header'
-import FooterSection from '@/components/includes/Footer'
+import { HeaderSection, FooterSection } from '@/components/includes'
 import WorldQuiz from '@/components/quiz/'
 
 export default {

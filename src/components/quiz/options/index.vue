@@ -62,7 +62,7 @@ button i {
   width: 100%;
 
   > li {
-    border-bottom: 1px solid $color4;
+    border-bottom: 1px solid $grey3;
     padding: 6px;
 
     &:hover {

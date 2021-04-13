@@ -1,15 +1,23 @@
 # world-quiz
+
 Capitals of the world
 
-## Description
+### Description
+
 Test your knowledge of the countries, capitals and flags of the world. This app uses VueJs for the front-end while getting data via a RESTful API.
 
-## Credits
+### Credits
+
 - http://flag-icon-css.lip.is/game/capital/
 - https://dev.to/lynnewritescode/my-scss-setup-within-a-vue-cli-3-project-4jan
 
-## REST Countries
+### REST Countries
+
 https://restcountries.eu/
+
+### Tools
+
+https://www.toptal.com/designers/subtlepatterns/
 
 ## TODO: ...
 1. show 'no capital' randomly as an answer to make up for countries with no capital like antartica
@@ -29,3 +37,4 @@ https://restcountries.eu/
 15. move await EventService.fetchData() to store
 16. Add json cities by country to make it harder to guess
 17. Remove bootstrap, jquery and popper to make the app lighter
+18. Remove countries with no capital when playing the capitals game (Bouvet Island: Bouvetøya  (Norwegian))

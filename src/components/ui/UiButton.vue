@@ -36,12 +36,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.btn {
-  max-width: 460px;
+.btn-block {
+  max-width: $max-width;
 }
 
 @media screen and (max-width: 760px) {
-  .btn {
+  .btn-block {
     max-width: 100%;
   }
 }

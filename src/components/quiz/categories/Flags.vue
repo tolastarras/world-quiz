@@ -4,7 +4,7 @@
     <transition name="fade">
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
-    <div class="flag mt-2 mb-5 col-md-6" :style="backgroundImage" />
+    <ui-flag :src="country.flag" />
     <ui-button
       v-for="country in countries"
       :key="country.name"
@@ -17,7 +17,7 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import { UiButton } from '@/components/ui'
+import { UiButton, UiFlag } from '@/components/ui'
 
 export default {
   name: 'Flags',
@@ -27,7 +27,8 @@ export default {
     correct: false
   }),
   components: {
-    UiButton
+    UiButton,
+    UiFlag
   },
   mounted () {
     if (!this.message) {
@@ -84,9 +85,6 @@ export default {
     }),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
-    },
-    backgroundImage () {
-      return 'backgroundImage: url(' + this.country.flag + ')'
     },
     messageType () {
       // determine the color of the message text
