@@ -9,6 +9,11 @@
       @select-region="selectContinent"
     />
     <div class="text-center">
+      <play-game
+        :category="category"
+        @handle-response="handleResponse"
+        @update-score="updateTotal"
+      />
       <flags-category
         v-if="isFlagsCategory"
         @handle-response="handleResponse"
@@ -44,7 +49,8 @@ export default {
     QuizOptions,
     FlagsCategory: () => import('./categories/Flags'),
     CapitalsCategory: () => import('./categories/Capitals'),
-    CountriesCategory: () => import('./categories/Countries')
+    CountriesCategory: () => import('./categories/Countries'),
+    PlayGame: () => import('./categories/PlayGame')
   },
   async mounted () {
     if (!localStorage.getItem('countries')) {

@@ -38,3 +38,4 @@ https://www.toptal.com/designers/subtlepatterns/
 16. Add json cities by country to make it harder to guess
 17. Remove bootstrap, jquery and popper to make the app lighter
 18. Remove countries with no capital when playing the capitals game (Bouvet Island: Bouvetøya  (Norwegian))
+19. Hint not showing on first question

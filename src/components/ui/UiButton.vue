@@ -5,7 +5,7 @@
     :disabled="disabled"
     @click.prevent="handleClick"
   >
-    {{ text  | formatCountryName }}
+    <slot />
   </button>
 </template>
 
@@ -15,10 +15,6 @@ import { formatCountryName } from '@/utils/format-string'
 export default {
   name: 'UiButton',
   props: {
-    text: {
-      type: String,
-      required: true
-    },
     disabled: {
       type: Boolean,
       default: false
@@ -28,8 +24,8 @@ export default {
     formatCountryName
   },
   methods: {
-    handleClick () {
-      this.$emit('check-answer', this.text)
+    handleClick (e) {
+      this.$emit('check-answer', e.target.innerText)
     }
   }
 }

@@ -1,16 +1,28 @@
 
 <template>
-  <img :src="src" alt="flag" class="mt-0 mb-5 px-0" />
+  <div class="mt-0 mb-5 px-0">
+    <vue-spinner v-if="loading" />
+    <img v-else :src="src" alt="flag" />
+  </div>
 </template>
 
 <script>
+import VueSpinner from 'vue-simple-spinner'
+
 export default {
   name: 'UiFlag',
   props: {
+    loading: {
+      type: Boolean,
+      default: false
+    },
     src: {
       type: String,
       required: true
     }
+  },
+  components: {
+    VueSpinner
   }
 }
 </script>

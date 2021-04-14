@@ -1,41 +1,56 @@
 <template>
   <div>
-    <h2 class="mt-4">
-      What is the capital of {{ country.name | formatCountryName }}?
-    </h2>
+    <ask-question :category="category" :country="country" />
     <transition name="fade">
       <h4 class="message" :class="messageType">{{ message }}</h4>
     </transition>
-    <ui-flag :src="country.flag" />
+    <ui-flag v-show="category !== 'Countries'" :src="country.flag" />
     <ui-button
       v-for="country in countries"
+      :class="`pl-4 text-${category === 'Countries' ? 'left' : 'center'}`"
       :key="country.name"
-      :text="country.capital | nocapital"
       :disabled="didAnswer"
       @check-answer="checkAnswer"
-    />
+    >
+      <img
+        v-show="category === 'Countries'"
+        class="thumbnail mr-2"
+        :src="country.flag"
+        alt="country flag"
+        width="64"
+      />
+      {{ formatAnswer(country) }}
+    </ui-button>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
 import { UiButton, UiFlag } from '@/components/ui'
+import AskQuestion from './AskQuestion'
 import { formatCountryName } from '@/utils/format-string'
 
 export default {
-  name: 'Capitals',
+  name: 'PlayGame',
   data: () => ({
-    loading: false,
     message: '',
     didAnswer: false,
     correct: false
   }),
   components: {
     UiButton,
-    UiFlag
+    UiFlag,
+    AskQuestion
+  },
+  props: {
+    category: {
+      type: String,
+      required: true
+    }
   },
   methods: {
     checkAnswer (answer) {
+      console.log('answer', answer)
       // disable all buttons
       this.didAnswer = true
 
@@ -70,6 +85,13 @@ export default {
     },
     showHint () {
       this.message = this.getHint
+    },
+    formatAnswer (country) {
+      const category = this.category.toLowerCase()
+      if (category === 'countries' || category === 'flags') {
+        return formatCountryName(country.name)
+      }
+      return country.capital
     }
   },
   watch: {
@@ -109,3 +131,9 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.thumbnail {
+  border: 1px solid white;
+}
+</style>
