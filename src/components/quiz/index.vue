@@ -14,21 +14,6 @@
         @handle-response="handleResponse"
         @update-score="updateTotal"
       />
-      <flags-category
-        v-if="isFlagsCategory"
-        @handle-response="handleResponse"
-        @update-score="updateTotal"
-      />
-      <countries-category
-        v-else-if="isCountriesCategory"
-        @handle-response="handleResponse"
-        @update-score="updateTotal"
-      />
-      <capitals-category
-        v-else
-        @handle-response="handleResponse"
-        @update-score="updateTotal"
-      />
       <score-board :score="score" />
     </div>
   </div>
@@ -47,9 +32,6 @@ export default {
   components: {
     ScoreBoard,
     QuizOptions,
-    FlagsCategory: () => import('./categories/Flags'),
-    CapitalsCategory: () => import('./categories/Capitals'),
-    CountriesCategory: () => import('./categories/Countries'),
     PlayGame: () => import('./categories/PlayGame')
   },
   async mounted () {
@@ -103,6 +85,8 @@ export default {
       let countries = []
       for (let i = 0; i < QUIZ_CHOICES; i++) {
         let index = this.rand(records.length)
+
+        // TODO: avoid countries with no capitals like Antarctica
 
         // avoid duplicate keys
         if (countries.indexOf(records[index]) > -1) {

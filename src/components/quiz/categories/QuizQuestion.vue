@@ -6,7 +6,7 @@
 import { formatCountryName } from '@/utils/format-string'
 
 export default {
-  name: 'AskQuestion',
+  name: 'QuizQuestion',
   props: {
     country: {
       type: Object,

@@ -39,3 +39,5 @@ https://www.toptal.com/designers/subtlepatterns/
 17. Remove bootstrap, jquery and popper to make the app lighter
 18. Remove countries with no capital when playing the capitals game (Bouvet Island: Bouvetøya  (Norwegian))
 19. Hint not showing on first question
+20. Rename the flags names to make it harder for the user to cheat by inspecting the code
+21. select a category (a hint shows ie. Europe), switch category: hint should change according to the new region

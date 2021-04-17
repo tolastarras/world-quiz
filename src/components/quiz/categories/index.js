@@ -1,2 +1,2 @@
-export { default as AskQuestion } from './AskQuestion'
+export { default as QuizQuestion } from './QuizQuestion'
 export { default as PlayGame } from './PlayGame'

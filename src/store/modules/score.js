@@ -26,14 +26,5 @@ export default {
     updateScore ({ commit }, score) {
       commit('UPDATE_SCORE', score)
     }
-  },
-  getters: {
-    getHint: (state, getters, rootState, rootGetters) => {
-      let continent = rootState.country.country.region
-      if (continent.toLowerCase() === 'americas') {
-        continent = continent.slice(0, -1)
-      }
-      return `Hint: This country is in ${continent}`
-    }
   }
 }

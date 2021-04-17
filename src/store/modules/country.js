@@ -23,6 +23,7 @@ export default {
     }
   },
   getters: {
-    formattedCountryName: state => formatCountryName(state.country.name)
+    formattedCountryName: state => formatCountryName(state.country.name),
+    region: state => state.country.region
   }
 }

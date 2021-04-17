@@ -2,7 +2,7 @@
 <template>
   <div class="mt-0 mb-5 px-0">
     <vue-spinner v-if="loading" />
-    <img v-else :src="src" alt="flag" />
+    <img v-else :src="src" alt="flag" :class="imageShadowClass" />
   </div>
 </template>
 
@@ -19,23 +19,31 @@ export default {
     src: {
       type: String,
       required: true
+    },
+    imageShadow: {
+      type: Boolean,
+      default: false
     }
   },
   components: {
     VueSpinner
+  },
+  computed: {
+    imageShadowClass () {
+      return this.imageShadow ? 'shadow' : ''
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-img {
-  max-width: $max-width;
+img.shadow {
+  max-width: 100%;
   box-shadow: 5px 5px 12px 2px $grey3;
 }
 
 @media screen and (max-width: 640px) {
   img {
-    max-width: 100%;
     box-shadow: 0 5px 12px 0 $grey3;
   }
 }
