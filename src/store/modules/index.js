@@ -1,0 +1,5 @@
+export { default as category } from '@/store/modules/category'
+export { default as continent } from '@/store/modules/continent'
+export { default as country } from '@/store/modules/country'
+export { default as score } from '@/store/modules/score'
+export { default as game } from '@/store/modules/game'

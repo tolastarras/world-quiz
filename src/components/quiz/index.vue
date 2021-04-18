@@ -81,8 +81,8 @@ export default {
     },
     questions () {
       let records = this.records()
-
       let countries = []
+
       for (let i = 0; i < QUIZ_CHOICES; i++) {
         let index = this.rand(records.length)
 

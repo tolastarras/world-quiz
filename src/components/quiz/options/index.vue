@@ -67,7 +67,7 @@ button i {
 
     &:hover {
       cursor: pointer;
-      color: $color2;
+      color: $white;
     }
 
     &:last-child {

@@ -2,7 +2,9 @@
   <div class="play-game">
     <quiz-question :category="category" :country="country" />
     <transition name="fade">
-      <h4 class="message" :class="messageType">{{ message }}</h4>
+      <h4 class="message" :class="messageType">
+        {{ message || hintText }}
+      </h4>
     </transition>
     <ui-flag
       v-show="category !== 'Countries'"
@@ -23,7 +25,7 @@
         alt="country flag"
         width="64"
       />
-      {{ formatAnswer(country) }}
+      {{ country[categoryKey] | formatCountryName }}
     </ui-button>
   </div>
 </template>
@@ -57,35 +59,22 @@ export default {
       // disable all buttons
       this.didAnswer = true
 
-      const category = this.category.toLowerCase()
-      let categoryKey = this.country.name
-
-      if (category === 'capitals') {
-        categoryKey = this.country.capital
-      }
-
-      if (answer.trim() === categoryKey) {
+      if (answer.trim() === this.country[this.categoryKey]) {
         this.correct = true
-
-        // display success message
         this.message = `Congrats! ${answer} is correct`
         this.$emit('update-score', true)
       } else {
-        // display error message
         this.message = `Sorry, ${answer} is incorrect`
         this.$emit('update-score', false)
       }
 
-      // show next question set in 2 seconds
+      // show next question set in x seconds
       setTimeout(() => {
         // load new set of questions
         this.$emit('handle-response')
 
         // reset values
         this.reset()
-
-        // show hint after displaying results
-        this.showHint()
       }, 3000)
     },
     reset () {
@@ -93,22 +82,12 @@ export default {
       this.didAnswer = false
       this.correct = false
     },
-    showHint () {
-      this.message = this.hint
-    },
-    formatAnswer (country) {
-      const category = this.category.toLowerCase()
-      if (category === 'countries' || category === 'flags') {
-        return formatCountryName(country.name)
+    showTextMessage () {
+      if (this.showHint) {
+        return this.hint
       }
-      return country.capital
-    }
-  },
-  watch: {
-    country () {
-      if (!this.message) {
-        this.showHint()
-      }
+
+      return this.message
     }
   },
   computed: {
@@ -116,17 +95,20 @@ export default {
       country: state => state.country.country,
       countries: state => state.country.countries,
       notification: state => state.notification.notification,
-      score: state => state.score.score
+      score: state => state.score.score,
+      showHint: state => state.game.showHint
     }),
     ...mapGetters({
-      region: 'country/region'
+      region: 'country/region',
+      categoryKey: 'category/key'
     }),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
     },
-    hint () {
+    hintText () {
+      if (!this.showHint) { return '' }
+
       let continent = this.region
-      console.log('continent', continent)
 
       if (continent.toLowerCase() === 'americas') {
         continent = continent.slice(0, -1)
@@ -156,7 +138,7 @@ export default {
 
 <style lang="scss" scoped>
 .play-game {
-  max-width: $max-width;
+  max-width: $max-content-width;
   margin: auto;
 
   .thumbnail {

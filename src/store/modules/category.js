@@ -17,5 +17,8 @@ export default {
     setCategory ({ commit }, category) {
       commit('SET_CATEGORY', category)
     }
+  },
+  getters: {
+    key: state => state.category.toLowerCase() === 'capitals' ? 'capital' : 'name'
   }
 }

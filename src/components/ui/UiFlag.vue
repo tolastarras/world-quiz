@@ -37,9 +37,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-img.shadow {
+img {
   max-width: 100%;
-  box-shadow: 5px 5px 12px 2px $grey3;
+
+  &.shadow {
+    box-shadow: 5px 5px 12px 2px $grey3;
+  }
 }
 
 @media screen and (max-width: 640px) {

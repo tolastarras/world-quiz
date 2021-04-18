@@ -1,35 +1,59 @@
 <template>
   <div class="header pt-3 text-center bg-primary">
-    <div class="container">
-      <h1 class="text-light">
-        <span>Take the </span>World Quiz
-      </h1>
-    </div>
+    <h1 class="text-light">
+      <span>Take the </span>World Quiz
+    </h1>
     <div class="bottom py-2">
       <h3 class="text-warning lead mb-0">
         <b class="font-weight-normal">Test your knowledge of the </b>
         <span class="font-weight-bold text-uppercase">{{ category }}</span> of
         <span class="font-weight-bold text-uppercase">{{ formattedContinent }}</span>
+        <ui-switch class="toggle" @toggle="onToggle" />
       </h3>
     </div>
   </div>
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapActions, mapGetters } from 'vuex'
+import { UiSwitch } from '@/components/ui'
 
 export default {
   name: 'AppHeader',
   computed: {
-    ...mapState('category', ['category']),
+    ...mapState({
+      category: 'category/category',
+      showHint: 'game/showHint'
+    }),
     ...mapGetters('continent', ['formattedContinent'])
+  },
+  components: {
+    UiSwitch
+  },
+  methods: {
+    ...mapActions({
+      setShowHint: 'game/setShowHint'
+    }),
+    onToggle (value) {
+      this.setShowHint(value)
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
 .bottom {
-  background-color: rgba($color1, 0.1);
+  background-color: rgba($black, 0.1);
+
+  h3 {
+    max-width: $max-header-width;
+    margin: 3px auto;
+
+    .toggle {
+      float: right;
+      margin-top: -3px;
+    }
+  }
 }
 
 @media screen and (max-width: 736px) {

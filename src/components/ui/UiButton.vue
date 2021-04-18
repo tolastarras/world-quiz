@@ -10,8 +10,6 @@
 </template>
 
 <script>
-import { formatCountryName } from '@/utils/format-string'
-
 export default {
   name: 'UiButton',
   props: {
@@ -20,12 +18,9 @@ export default {
       default: false
     }
   },
-  filters: {
-    formatCountryName
-  },
   methods: {
-    handleClick (e) {
-      this.$emit('check-answer', e.target.innerText)
+    handleClick ({ target }) {
+      this.$emit('check-answer', target.innerText)
     }
   }
 }
