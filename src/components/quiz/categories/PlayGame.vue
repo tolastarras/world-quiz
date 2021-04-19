@@ -128,9 +128,6 @@ export default {
     }
   },
   filters: {
-    nocapital (value) {
-      return !value ? 'No Capital' : value
-    },
     formatCountryName
   }
 }

@@ -22,8 +22,8 @@ export default {
   name: 'AppHeader',
   computed: {
     ...mapState({
-      category: 'category/category',
-      showHint: 'game/showHint'
+      category: state => state.category.category,
+      showHint: state => state.game.showHing
     }),
     ...mapGetters('continent', ['formattedContinent'])
   },

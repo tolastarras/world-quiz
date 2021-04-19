@@ -19,6 +19,6 @@ export default {
     }
   },
   getters: {
-    key: state => state.category.toLowerCase() === 'capitals' ? 'capital' : 'name'
+    key: state => state.category === 'Capitals' ? 'capital' : 'name'
   }
 }

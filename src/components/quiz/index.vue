@@ -25,6 +25,8 @@ import { mapState, mapActions } from 'vuex'
 import DataService from '@/services/DataService'
 import ScoreBoard from '@/components/quiz/score/ScoreBoard'
 import QuizOptions from './options/'
+import { records, ramdomSet } from '@/utils/quiz'
+import { randInt } from '@/utils/helper'
 
 const QUIZ_CHOICES = 3
 
@@ -61,56 +63,22 @@ export default {
       setCategory: 'category/setCategory',
       updateScore: 'score/updateScore'
     }),
-    rand (max) {
-      return Math.floor(Math.random() * max)
-    },
-    records () {
-      let records = JSON.parse(localStorage.getItem('countries'))
+    async questions () {
+      const items = await records(this.continent)
+      const countries = await ramdomSet(items, QUIZ_CHOICES)
+      const country = countries[randInt(countries.length)]
 
-      // world records
-      if (this.continent === 'World') {
-        return records
-      }
-
-      // continent specific records
-      return records.filter(record => {
-        if (record.region === this.continent) {
-          return record
-        }
-      })
-    },
-    questions () {
-      let records = this.records()
-      let countries = []
-
-      for (let i = 0; i < QUIZ_CHOICES; i++) {
-        let index = this.rand(records.length)
-
-        // TODO: avoid countries with no capitals like Antarctica
-
-        // avoid duplicate keys
-        if (countries.indexOf(records[index]) > -1) {
-          console.log(records[index].name + ' is already selected (choosing another)...')
-          i--
-          continue
-        }
-        countries.push(records[index])
-      }
-
+      this.setCountry(country)
       this.setCountries(countries)
 
-      // choose country from randomly selected countries
-      let index = this.rand(QUIZ_CHOICES)
-
-      this.setCountry(countries[index])
-
       // DEBUGGING ONLY
-      this.showAnswer(countries, index)
+      this.showAnswer(countries, country)
     },
-    showAnswer (countries, index) {
+    showAnswer (questions, answer) {
       if (process.env.NODE_ENV === 'development') {
-        countries.map(country => console.log(country.name))
-        console.log('A: ' + JSON.stringify(countries[index]))
+        console.log('QUESTIONS')
+        questions.map(question => console.log(JSON.stringify(question)))
+        console.log('A: ' + JSON.stringify(answer))
         console.log('*************')
       }
     },
@@ -134,7 +102,7 @@ export default {
       this.updateScore({ streak, record })
     },
     selectCategory (value) {
-      this.setCategory(value)
+      this.setCategory(value.toLowerCase())
     },
     selectContinent (value) {
       this.setContinent(value)
@@ -149,13 +117,7 @@ export default {
       country: state => state.country.country,
       countries: state => state.country.countries,
       score: state => state.score.score
-    }),
-    isFlagsCategory () {
-      return this.category.toLowerCase() === 'flags'
-    },
-    isCountriesCategory () {
-      return this.category.toLowerCase() === 'countries'
-    }
+    })
   }
 }
 </script>

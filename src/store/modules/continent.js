@@ -22,14 +22,7 @@ export default {
     }
   },
   getters: {
-    formattedContinent: state => {
-      let continent = state.continent
-
-      if (['World', 'Americas'].includes(continent)) {
-        continent = `the ${continent}`
-      }
-
-      return continent
-    }
+    formattedContinent: ({ continent }) =>
+      ['World', 'Americas'].includes(continent) ? `the ${continent}` : continent
   }
 }
