@@ -19,6 +19,7 @@ export default {
     }
   },
   getters: {
-    key: state => state.category === 'Capitals' ? 'capital' : 'name'
+    key: state => state.category === 'Capitals' ? 'capital' : 'name',
+    isCountries: state => state.category === 'Countries'
   }
 }

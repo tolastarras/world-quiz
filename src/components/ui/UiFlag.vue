@@ -1,53 +1,58 @@
 
 <template>
-  <div class="mt-0 mb-5 px-0">
-    <vue-spinner v-if="loading" />
-    <img v-else :src="src" alt="flag" :class="imageShadowClass" />
+  <div :class="`${thumbnailClasses} mt-0 px-0`">
+    <img :src="src" alt="flag" :class="`${imageClasses}`" />
   </div>
 </template>
 
 <script>
-import VueSpinner from 'vue-simple-spinner'
-
 export default {
   name: 'UiFlag',
   props: {
-    loading: {
-      type: Boolean,
-      default: false
-    },
     src: {
       type: String,
       required: true
     },
-    imageShadow: {
+    hasShadow: {
+      type: Boolean,
+      default: false
+    },
+    isThumbnail: {
       type: Boolean,
       default: false
     }
   },
-  components: {
-    VueSpinner
-  },
   computed: {
-    imageShadowClass () {
-      return this.imageShadow ? 'shadow' : ''
+    imageClasses () {
+      const shadow = this.hasShadow ? 'shadow' : ''
+      const thumbnail = this.isThumbnail ? 'thumbnail' : ''
+      return `${shadow} ${thumbnail}`
+    },
+    thumbnailClasses () {
+      return `mb-${this.isThumbnail ? '0 img-div' : 5}`
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-img {
-  max-width: 100%;
 
-  &.shadow {
-    box-shadow: 5px 5px 12px 2px $grey3;
+.img-div {
+  max-width: 70px;
+  height: 36px;
+}
+
+img {
+  max-width: 60%;
+
+  &.thumbnail {
+    border: 2px solid $white;
   }
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 460px) {
   img {
-    box-shadow: 0 5px 12px 0 $grey3;
+    max-width: 100%;
   }
 }
 </style>

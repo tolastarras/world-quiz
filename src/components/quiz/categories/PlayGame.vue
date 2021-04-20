@@ -1,44 +1,54 @@
 <template>
   <div class="play-game">
-    <quiz-question :category="category" :country="country" />
-    <transition name="fade">
-      <h4 class="message" :class="messageType">
-        {{ message || hintText }}
-      </h4>
-    </transition>
-    <ui-flag
-      v-show="category !== 'Countries'"
-      :image-shadow="country.name !== 'Nepal'"
-      :src="country.flag"
+    <vue-spinner
+      v-if="loading"
+      class="spinner mt-4 d-flex align-items-center"
+      size="large"
+      width="8px"
     />
-    <ui-button
-      v-for="country in countries"
-      :class="`pl-4 text-${category === 'Countries' ? 'left' : 'center'}`"
-      :key="country.name"
-      :disabled="didAnswer"
-      @check-answer="checkAnswer"
-    >
-      <img
-        v-show="category === 'Countries'"
-        class="thumbnail mr-2"
+    <div v-else>
+      <quiz-question :category="category" :country="country" />
+      <transition name="fade">
+        <h4 class="message" :class="messageType">
+          {{ message || hintText }}
+        </h4>
+      </transition>
+      <ui-flag
+        v-show="!isCountriesCategory"
+        :has-shadow="country.name !== 'Nepal'"
         :src="country.flag"
-        alt="country flag"
-        width="64"
       />
-      {{ country[categoryKey] | formatCountryName }}
-    </ui-button>
+      <ui-button
+        v-for="country in countries"
+        class="d-flex pl-4"
+        :class="`justify-content-${isCountriesCategory ? 'left' : 'center'}`"
+        :key="country.name"
+        :disabled="didAnswer"
+        @check-answer="checkAnswer"
+      >
+        <ui-flag
+          v-show="isCountriesCategory"
+          class="mr-2"
+          is-thumbnail
+          :src="country.flag"
+        />
+        {{ country[categoryKey] | formatCountryName }}
+      </ui-button>
+    </div>
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters } from 'vuex'
+import VueSpinner from 'vue-simple-spinner'
 import { UiButton, UiFlag } from '@/components/ui'
 import QuizQuestion from './QuizQuestion'
-import { formatCountryName } from '@/utils/format-string'
+import { formatCountryName } from '@/utils/string'
 
 export default {
   name: 'PlayGame',
   data: () => ({
+    loading: true,
     message: '',
     didAnswer: false,
     correct: false
@@ -46,13 +56,17 @@ export default {
   components: {
     UiButton,
     UiFlag,
-    QuizQuestion
+    QuizQuestion,
+    VueSpinner
   },
   props: {
     category: {
       type: String,
       required: true
     }
+  },
+  mounted () {
+    this.loading = false
   },
   methods: {
     checkAnswer (answer) {
@@ -100,7 +114,8 @@ export default {
     }),
     ...mapGetters({
       region: 'country/region',
-      categoryKey: 'category/key'
+      categoryKey: 'category/key',
+      isCountriesCategory: 'category/isCountries'
     }),
     disableButton () {
       return this.didAnswer ? 'disabled' : ''
@@ -138,8 +153,8 @@ export default {
   max-width: $max-content-width;
   margin: auto;
 
-  .thumbnail {
-    border: 1px solid white;
+  .spinner {
+    min-height: 200px;
   }
 }
 </style>

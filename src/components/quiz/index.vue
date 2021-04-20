@@ -90,7 +90,7 @@ export default {
       this.updateScore({ streak, record })
     },
     selectCategory (value) {
-      this.setCategory(value.toLowerCase())
+      this.setCategory(value)
     },
     selectContinent (value) {
       this.setContinent(value)
@@ -113,5 +113,11 @@ export default {
 <style lang="scss" scoped>
 .quiz-container {
   padding: 5px;
+}
+
+@media screen and (max-width: 760px) {
+  .quiz-container {
+    margin-top: 1.5rem !important;
+  }
 }
 </style>

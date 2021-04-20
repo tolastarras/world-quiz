@@ -1,4 +1,4 @@
-import { formatCountryName } from '@/utils/format-string'
+import { formatCountryName } from '@/utils/string'
 
 export default {
   namespaced: true,

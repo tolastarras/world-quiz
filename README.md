@@ -35,11 +35,15 @@ https://www.toptal.com/designers/subtlepatterns/
 15. move await EventService.fetchData() to store
 16. Add json cities by country to make it harder to guess
 17. Remove bootstrap, jquery and popper to make the app lighter
-18. Remove countries with no capital when playing the capitals game (Bouvet Island: Bouvetøya  (Norwegian))
 20. Rename the flags names to make it harder for the user to cheat by inspecting the code
 21. select a category (a hint shows ie. Europe), switch category: hint should change according to the new region
 22. Add levels - easy to hard
 23. Add functionality to play a point score or streak game
 24. Limit the number of countries per game (to 30) instead of infinite
-25. Allow countries without capital when the category is flags only
+25. Allow countries without capital when the category is flags only  (Bouvet Island: Bouvetøya  (Norwegian), Antartctica)
 26. Handle no access to api and to empty local storage
+27. Jest specs
+28. Replace the switch with a hint (bulb) icon
+29. Display a different hint when ie region is Africa and hint: This country is in Africa
+30. Combine regular expressions in the strings utils file
+31. pay auto vs next button
