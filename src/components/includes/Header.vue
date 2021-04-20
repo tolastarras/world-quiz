@@ -47,38 +47,36 @@ export default {
 
   h3 {
     max-width: $max-header-width;
+    width: 100%;
     margin: 3px auto;
+    position: relative;
 
     .toggle {
-      float: right;
-      margin-top: -3px;
+      position: absolute;
+      bottom: 0;
+      right: 6px;
+      // margin-top: -3px;
     }
   }
 }
 
 @media screen and (max-width: 736px) {
-  h1 {
-    padding-bottom: .4em;
+  h1 > span {
+    display: none;
   }
 
-  h3 {
-    font-size: 1.6em;
+  h3 > b {
+    display: none;
   }
 }
 
-@media screen and (max-width: 480px) {
-  h1 {
-    font-size: 3em;
-    padding-bottom: 1em;
-
-    > span {
-      display: none;
-    }
+@media screen and (max-width: 430px) {
+  h3 > span {
+    display: block;
   }
 
-  h3 {
-    font-size: 1.3em;
-    margin: 0 1em;
+  .toggle {
+    bottom: 0;
   }
 }
 </style>

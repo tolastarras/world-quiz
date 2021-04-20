@@ -23,7 +23,7 @@ export default {
 .switch {
   position: relative;
   display: inline-block;
-  width: 60px;
+  width: 50px;
   height: 28px;
   margin-bottom: 0;
 
@@ -41,7 +41,7 @@ export default {
     }
 
     &:checked + .slider:before {
-      transform: translateX(32px);
+      transform: translateX(22px);
     }
   }
 

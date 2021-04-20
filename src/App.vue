@@ -15,8 +15,8 @@ export default {
 <style lang="scss">
 #app {
   font-family: Arial, Helvetica, sans-serif;
-  background: rgba(0, 100, 200, 0.5);
   background-image: url('./assets/mosaic.png');
+  background-repeat: repeat;
 }
 
 button, a, li {

@@ -1,5 +1,5 @@
 <template>
-  <div class="row mt-5">
+  <div class="row mt-5 mx-0">
     <div class="col d-flex justify-content-center">
       <score-card
         class="mr-3"

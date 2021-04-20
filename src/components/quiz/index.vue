@@ -11,7 +11,7 @@
     <div class="text-center">
       <play-game
         :category="category"
-        @handle-response="handleResponse"
+        @handle-response="questions"
         @update-score="updateTotal"
       />
       <score-board :score="score" />
@@ -25,7 +25,7 @@ import { mapState, mapActions } from 'vuex'
 import DataService from '@/services/DataService'
 import ScoreBoard from '@/components/quiz/score/ScoreBoard'
 import QuizOptions from './options/'
-import { records, ramdomSet } from '@/utils/quiz'
+import { records, ramdomSet, showAnswer } from '@/utils/quiz'
 import { randInt } from '@/utils/helper'
 
 const QUIZ_CHOICES = 3
@@ -72,19 +72,7 @@ export default {
       this.setCountries(countries)
 
       // DEBUGGING ONLY
-      this.showAnswer(countries, country)
-    },
-    showAnswer (questions, answer) {
-      if (process.env.NODE_ENV === 'development') {
-        console.log('QUESTIONS')
-        questions.map(question => console.log(JSON.stringify(question)))
-        console.log('A: ' + JSON.stringify(answer))
-        console.log('*************')
-      }
-    },
-    handleResponse () {
-      // load new set of questions
-      this.questions()
+      showAnswer(countries, country)
     },
     updateTotal (correctAnswer) {
       let streak = this.score.streak

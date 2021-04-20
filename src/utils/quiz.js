@@ -31,3 +31,12 @@ export const ramdomSet = (records, size) => {
 
   return [...items]
 }
+
+export const showAnswer = (questions, answer) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log('QUESTIONS')
+    questions.map(question => console.log(JSON.stringify(question)))
+    console.log('A: ' + JSON.stringify(answer))
+    console.log('*************')
+  }
+}
