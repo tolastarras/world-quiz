@@ -21,9 +21,9 @@
       <ui-button
         v-for="country in countries"
         class="d-flex pl-4"
-        :class="`justify-content-${isCountriesCategory ? 'left' : 'center'}`"
+        :class="`${btnClasses} ${btnColor(country)}`"
         :key="country.name"
-        :disabled="didAnswer"
+        :disabled="!!userAnswer"
         @check-answer="checkAnswer"
       >
         <ui-flag
@@ -32,7 +32,7 @@
           is-thumbnail
           :src="country.flag"
         />
-        {{ country[categoryKey] | formatCountryName }}
+        {{ btnText(country) }}
       </ui-button>
     </div>
   </div>
@@ -50,8 +50,7 @@ export default {
   data: () => ({
     loading: true,
     message: '',
-    didAnswer: false,
-    correct: false
+    userAnswer: ''
   }),
   components: {
     UiButton,
@@ -68,13 +67,15 @@ export default {
   mounted () {
     this.loading = false
   },
+  updated () {
+    this.loading = false
+  },
   methods: {
     checkAnswer (answer) {
       // disable all buttons
-      this.didAnswer = true
+      this.userAnswer = answer
 
-      if (answer.trim() === this.country[this.categoryKey]) {
-        this.correct = true
+      if (answer === this.correctAnswer) {
         this.message = `Congrats! ${answer} is correct`
         this.$emit('update-score', true)
       } else {
@@ -82,6 +83,15 @@ export default {
         this.$emit('update-score', false)
       }
 
+      this.autoReset()
+    },
+    reset () {
+      this.message = ''
+      this.userAnswer = ''
+      this.loading = true
+    },
+    autoReset () {
+      const AUTO_RESET_MILLISECONDS = 3000
       // show next question set in x seconds
       setTimeout(() => {
         // load new set of questions
@@ -89,19 +99,20 @@ export default {
 
         // reset values
         this.reset()
-      }, 3000)
-    },
-    reset () {
-      this.message = ''
-      this.didAnswer = false
-      this.correct = false
+      }, AUTO_RESET_MILLISECONDS)
     },
     showTextMessage () {
-      if (this.showHint) {
-        return this.hint
-      }
+      return this.showHint ? this.Hint : this.message
+    },
+    btnText (country) {
+      return formatCountryName(country[this.categoryKey])
+    },
+    btnColor (country) {
+      const btnText = this.btnText(country)
+      const correct = !!this.userAnswer && btnText === this.correctAnswer
+      const wrong = this.userAnswer === btnText && this.userAnswer !== this.correctAnswer
 
-      return this.message
+      return wrong ? 'btn-danger' : (correct ? 'btn-success' : '')
     }
   },
   computed: {
@@ -117,33 +128,26 @@ export default {
       categoryKey: 'category/key',
       isCountriesCategory: 'category/isCountries'
     }),
-    disableButton () {
-      return this.didAnswer ? 'disabled' : ''
-    },
     hintText () {
       if (!this.showHint) { return '' }
 
-      let continent = this.region
-
-      if (continent.toLowerCase() === 'americas') {
-        continent = continent.slice(0, -1)
-      }
+      const region = this.region
+      const continent = region === 'Americas' ? region.slice(0, -1) : region
 
       return `Hint: This country is in ${continent}`
     },
     messageType () {
-      let type = 'danger'
-      if (!this.correct && !this.didAnswer) {
-        type = 'primary'
-      } else if (this.correct) {
-        type = 'success'
-      }
+      const correctAnswer = this.correctAnswer === this.userAnswer
+      const noAction = !correctAnswer && !this.userAnswer.length
 
-      return 'text-' + type
+      return `text-${noAction ? 'primary' : (correctAnswer ? 'success' : 'danger')}`
+    },
+    correctAnswer () {
+      return formatCountryName(this.country[this.categoryKey])
+    },
+    btnClasses () {
+      return `justify-content-${this.isCountriesCategory ? 'left' : 'center'}`
     }
-  },
-  filters: {
-    formatCountryName
   }
 }
 </script>

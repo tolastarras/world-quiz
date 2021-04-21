@@ -25,7 +25,7 @@ import { mapState, mapActions } from 'vuex'
 import DataService from '@/services/DataService'
 import ScoreBoard from '@/components/quiz/score/ScoreBoard'
 import QuizOptions from './options/'
-import { records, ramdomSet, showAnswer } from '@/utils/quiz'
+import { records, ramdomSet } from '@/utils/quiz'
 import { randInt } from '@/utils/helper'
 
 const QUIZ_CHOICES = 3
@@ -72,7 +72,7 @@ export default {
       this.setCountries(countries)
 
       // DEBUGGING ONLY
-      showAnswer(countries, country)
+      // showAnswer(countries, country)
     },
     updateTotal (correctAnswer) {
       let streak = this.score.streak

@@ -44,6 +44,7 @@ export default {
 
 img {
   max-width: 60%;
+  max-height: 240px;
 
   &.thumbnail {
     border: 2px solid $white;
