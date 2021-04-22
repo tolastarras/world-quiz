@@ -27,5 +27,5 @@
 28. Replace the switch with a hint (bulb) icon
 29. Display a different hint when ie region is Africa and hint: This country is in Africa
 30. Combine regular expressions in the strings utils file
-31. pay auto vs next button
+31. autoplay vs next button
 32. Add a quick settings menu

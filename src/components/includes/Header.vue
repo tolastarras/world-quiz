@@ -8,7 +8,7 @@
         <b class="font-weight-normal">Test your knowledge of the </b>
         <span class="font-weight-bold text-uppercase">{{ category }}</span> of
         <span class="font-weight-bold text-uppercase">{{ formattedContinent }}</span>
-        <ui-switch class="toggle" @toggle="onToggle" />
+        <settings :show-hint="showHint" @toggle="handleClick" />
       </h3>
     </div>
   </div>
@@ -16,26 +16,26 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
-import { UiSwitch } from '@/components/ui'
+import Settings from '@/components/settings'
 
 export default {
   name: 'AppHeader',
   computed: {
     ...mapState({
       category: state => state.category.category,
-      showHint: state => state.game.showHing
+      showHint: state => state.game.showHint
     }),
     ...mapGetters('continent', ['formattedContinent'])
   },
   components: {
-    UiSwitch
+    Settings
   },
   methods: {
     ...mapActions({
       setShowHint: 'game/setShowHint'
     }),
-    onToggle (value) {
-      this.setShowHint(value)
+    handleClick () {
+      this.setShowHint(!this.showHint)
     }
   }
 }
@@ -50,13 +50,6 @@ export default {
     width: 100%;
     margin: 3px auto;
     position: relative;
-
-    .toggle {
-      position: absolute;
-      bottom: 0;
-      right: 6px;
-      // margin-top: -3px;
-    }
   }
 }
 
@@ -73,10 +66,6 @@ export default {
 @media screen and (max-width: 430px) {
   h3 > span {
     display: block;
-  }
-
-  .toggle {
-    bottom: 0;
   }
 }
 </style>
