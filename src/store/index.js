@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
-import { category, continent, country, score, game } from '@/store/modules'
+import { category, continent, country, score, settings } from '@/store/modules'
 
 Vue.use(Vuex)
 
@@ -11,6 +11,6 @@ export default new Vuex.Store({
     continent,
     country,
     score,
-    game
+    settings
   }
 })

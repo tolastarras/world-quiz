@@ -1,7 +1,8 @@
 <template>
   <button
     type="button"
-    class="btn btn-primary btn-block mb-2 mx-auto"
+    class="btn btn-primary mb-2 mx-auto"
+    :class="btnType"
     :disabled="disabled"
     @click.prevent="handleClick"
   >
@@ -16,6 +17,15 @@ export default {
     disabled: {
       type: Boolean,
       default: false
+    },
+    width: {
+      type: [String, Number, Boolean],
+      default: false
+    }
+  },
+  computed: {
+    btnType () {
+      return !this.width ? 'btn-block' : 'mx-0'
     }
   },
   methods: {

@@ -23,7 +23,7 @@ export default {
   computed: {
     ...mapState({
       category: state => state.category.category,
-      showHint: state => state.game.showHint
+      showHint: state => state.settings.showHint
     }),
     ...mapGetters('continent', ['formattedContinent'])
   },
@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     ...mapActions({
-      setShowHint: 'game/setShowHint'
+      setShowHint: 'settings/setShowHint'
     }),
     handleClick () {
       this.setShowHint(!this.showHint)

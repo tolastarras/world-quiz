@@ -83,7 +83,9 @@ export default {
         this.$emit('update-score', false)
       }
 
-      this.autoReset()
+      if (this.autoPlay) {
+        this.autoReset()
+      }
     },
     reset () {
       this.message = ''
@@ -121,7 +123,8 @@ export default {
       countries: state => state.country.countries,
       notification: state => state.notification.notification,
       score: state => state.score.score,
-      showHint: state => state.game.showHint
+      showHint: state => state.settings.showHint,
+      autoPlay: state => state.settings.autoPlay
     }),
     ...mapGetters({
       region: 'country/region',
