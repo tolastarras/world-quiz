@@ -23,7 +23,7 @@ export default {
 .switch {
   position: relative;
   display: inline-block;
-  width: 50px;
+  width: 100%;
   height: 28px;
   margin-bottom: 0;
 
@@ -66,7 +66,7 @@ export default {
 
     &:before {
       position: absolute;
-      content: "";
+      content: '';
       height: 20px;
       width: 20px;
       left: 4px;

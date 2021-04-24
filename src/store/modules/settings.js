@@ -3,7 +3,8 @@ export default {
   state: {
     showHint: false,
     showSettings: false,
-    autoPlay: true
+    autoPlay: true,
+    difficultyLevel: 'EASY'
   },
   mutations: {
     SET_SHOW_HINT (state, show) {
@@ -14,6 +15,9 @@ export default {
     },
     SET_AUTO_PLAY (state, value) {
       state.auto = value
+    },
+    SET_DIFFICULTY_LEVEL (state, value) {
+      state.difficultyLevel = value
     }
   },
   actions: {
@@ -25,6 +29,9 @@ export default {
     },
     setAutoPlay ({ commit }, value) {
       commit('SET_AUTO_PLAY', value)
+    },
+    setDifficultyLevel ({ commit }, value) {
+      commit('SET_DIFFICULTY_LEVEL', value)
     }
   }
 }

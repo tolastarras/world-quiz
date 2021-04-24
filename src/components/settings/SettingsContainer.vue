@@ -7,11 +7,10 @@
       :size="32"
       @click="handleClick"
     />
-    <transition name="fade">
-      <div v-show="showSettings" class="mt-4">
-        <p>Hello world</p>
-      </div>
-    </transition>
+    <settings-options
+      :difficulty-level="difficultyLevel"
+      @update-difficulty-level="handleDifficultyLevel"
+    />
   </div>
 </template>
 
@@ -19,25 +18,32 @@
 import CogIcon from 'vue-material-design-icons/Cog'
 
 export default {
-  name: 'Settings',
+  name: 'SettingsContainer',
   props: {
+    difficultyLevel: {
+      type: String,
+      required: true
+    },
     showSettings: {
       type: Boolean,
       default: false
     }
   },
   components: {
-    CogIcon
+    CogIcon,
+    SettingsOptions: () => import('@/components/settings/SettingsOptions')
   },
   computed: {
     showSettingsClasses () {
-      return `settings bg-secondary ${this.showSettings ? 'show' : ''}`
+      return `settings bg-dark ${this.showSettings ? 'show-settings-container' : ''}`
     }
   },
   methods: {
     handleClick () {
-      console.log('hello')
       this.$emit('toggle-settings', !this.showSettings)
+    },
+    handleDifficultyLevel (value) {
+      this.$emit('update-difficulty-level', value)
     }
   }
 }
@@ -54,28 +60,21 @@ export default {
   width: 46px;
   height: 44px;
   transition: all 1s ease-in-out;
+  overflow: hidden;
 
-  &:hover {
-    cursor: pointer;
-  }
-
-  &.show {
+  &.show-settings-container {
     width: 280px;
-    height: 400px;
+    height: 360px;
   }
 
   .cog-icon {
     position: absolute;
     top: 6px;
     left: 8px;
-  }
 
-  .fade-enter-active, .fade-leave-active {
-    transition: opacity 0.5s;
-  }
-
-  .fade-enter, .fade-leave-to {
-    opacity: 0;
+    &:hover {
+      cursor: pointer;
+    }
   }
 }
 </style>

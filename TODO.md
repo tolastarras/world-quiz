@@ -5,11 +5,6 @@
 4. remember selections on reload (check savvy-vuegram)
 5. update streak record based on category selected and not as ALL
 6. show loading spinner while waiting for the next question
-9. Check countries: 
-  > Palestine, State of
-  > Saint Martin (French part) => French Saint Martin or just Saint Martin
-  > Sint Maarten (Dutch part)
-  > Tanzania, United Republic of
 11. Don't allow same flags to repeat after at least an x amount of times.
 13. move randInt() to a helper mixin
 14. QUIZ_CHOICES move to a config constants file
@@ -21,11 +16,12 @@
 22. Add levels - easy to hard
 23. Add functionality to play a point score or streak game
 24. Limit the number of countries per game (to 30) instead of infinite
-25. Allow countries without capital when the category is flags only  (Bouvet Island: Bouvetøya  (Norwegian), Antartctica)
+25. Allow countries without capital when the category is flags only (Bouvet Island: Bouvetøya  (Norwegian), Antartctica)
 26. Handle no access to api and to empty local storage
 27. Jest specs
-28. Replace the switch with a hint (bulb) icon
 29. Display a different hint when ie region is Africa and hint: This country is in Africa
 30. Combine regular expressions in the strings utils file
 31. autoplay vs next button
-32. Add a quick settings menu
+33. Close the settings dialog by clicking outside of the dialog
+34. Refactor different settings into a single object
+35. Show an animated icon in the level settings buttons

@@ -9,8 +9,10 @@
         <span class="font-weight-bold text-uppercase">{{ category }}</span> of
         <span class="font-weight-bold text-uppercase">{{ formattedContinent }}</span>
         <settings
+          :difficulty-level="difficultyLevel"
           :show-settings="showSettings"
           @toggle-settings="toggleSettings"
+          @update-difficulty-level="updateDifficultyLevel"
         />
         <show-hint
           :show-hint="showHint"
@@ -31,7 +33,8 @@ export default {
     ...mapState({
       category: state => state.category.category,
       showHint: state => state.settings.showHint,
-      showSettings: state => state.settings.showSettings
+      showSettings: state => state.settings.showSettings,
+      difficultyLevel: state => state.settings.difficultyLevel
     }),
     ...mapGetters('continent', ['formattedContinent']),
     iconColor () {
@@ -45,13 +48,17 @@ export default {
   methods: {
     ...mapActions({
       setShowHint: 'settings/setShowHint',
-      setShowSettings: 'settings/setShowSettings'
+      setShowSettings: 'settings/setShowSettings',
+      setDifficultyLevel: 'settings/setDifficultyLevel'
     }),
     toggleHint () {
       this.setShowHint(!this.showHint)
     },
     toggleSettings () {
       this.setShowSettings(!this.showSettings)
+    },
+    updateDifficultyLevel (value) {
+      this.setDifficultyLevel(value)
     }
   }
 }
