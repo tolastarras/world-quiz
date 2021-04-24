@@ -8,7 +8,14 @@
         <b class="font-weight-normal">Test your knowledge of the </b>
         <span class="font-weight-bold text-uppercase">{{ category }}</span> of
         <span class="font-weight-bold text-uppercase">{{ formattedContinent }}</span>
-        <settings :show-hint="showHint" @toggle="handleClick" />
+        <settings
+          :show-settings="showSettings"
+          @toggle-settings="toggleSettings"
+        />
+        <show-hint
+          :show-hint="showHint"
+          @toggle-hint="toggleHint"
+        />
       </h3>
     </div>
   </div>
@@ -16,26 +23,35 @@
 
 <script>
 import { mapState, mapActions, mapGetters } from 'vuex'
-import Settings from '@/components/settings'
+import { ShowHint, Settings } from '@/components/settings'
 
 export default {
   name: 'AppHeader',
   computed: {
     ...mapState({
       category: state => state.category.category,
-      showHint: state => state.settings.showHint
+      showHint: state => state.settings.showHint,
+      showSettings: state => state.settings.showSettings
     }),
-    ...mapGetters('continent', ['formattedContinent'])
+    ...mapGetters('continent', ['formattedContinent']),
+    iconColor () {
+      return this.showHint ? '#f4c01a' : '#ccc'
+    }
   },
   components: {
-    Settings
+    Settings,
+    ShowHint
   },
   methods: {
     ...mapActions({
-      setShowHint: 'settings/setShowHint'
+      setShowHint: 'settings/setShowHint',
+      setShowSettings: 'settings/setShowSettings'
     }),
-    handleClick () {
+    toggleHint () {
       this.setShowHint(!this.showHint)
+    },
+    toggleSettings () {
+      this.setShowSettings(!this.showSettings)
     }
   }
 }
@@ -50,6 +66,16 @@ export default {
     width: 100%;
     margin: 3px auto;
     position: relative;
+
+    .toggle-icon {
+      position: absolute;
+      bottom: -3px;
+      right: 6px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
   }
 }
 
