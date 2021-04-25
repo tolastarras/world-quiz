@@ -13,7 +13,6 @@
 17. Remove bootstrap, jquery and popper to make the app lighter
 20. Rename the flags names to make it harder for the user to cheat by inspecting the code
 21. select a category (a hint shows ie. Europe), switch category: hint should change according to the new region
-22. Add levels - easy to hard
 23. Add functionality to play a point score or streak game
 24. Limit the number of countries per game (to 30) instead of infinite
 25. Allow countries without capital when the category is flags only (Bouvet Island: Bouvetøya  (Norwegian), Antartctica)
@@ -22,6 +21,7 @@
 29. Display a different hint when ie region is Africa and hint: This country is in Africa
 30. Combine regular expressions in the strings utils file
 31. autoplay vs next button
-33. Close the settings dialog by clicking outside of the dialog
 34. Refactor different settings into a single object
 35. Show an animated icon in the level settings buttons
+36. move the height of the settings button on small screens to a clear area
+37. D.C. Washington - check capital
