@@ -21,7 +21,7 @@
 29. Display a different hint when ie region is Africa and hint: This country is in Africa
 30. Combine regular expressions in the strings utils file
 31. autoplay vs next button
-34. Refactor different settings into a single object
+34. Refactor all different settings into a single object
 35. Show an animated icon in the level settings buttons
 36. move the height of the settings button on small screens to a clear area
 37. D.C. Washington - check capital

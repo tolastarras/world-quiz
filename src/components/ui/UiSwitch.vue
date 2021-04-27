@@ -1,8 +1,12 @@
 <template>
-  <label class="switch">
-    <input type="checkbox" v-model="isChecked" @click="handleCheck">
-    <span class="slider round" />
-  </label>
+  <div class="d-flex">
+    <span class="mx-3 text-uppercase">{{ leftText }}</span>
+    <label class="switch">
+      <input type="checkbox" v-model="isChecked" @click="handleCheck">
+      <span class="slider round" />
+    </label>
+    <span class="mx-3 text-uppercase">{{ rightText }}</span>
+  </div>
 </template>
 
 <script>
@@ -11,15 +15,31 @@ export default {
   data: () => ({
     isChecked: false
   }),
+  props: {
+    leftText: {
+      type: String,
+      default: 'off'
+    },
+    rightText: {
+      type: String,
+      default: 'on'
+    }
+  },
   methods: {
     handleCheck () {
-      this.$emit('toggle', !this.isChecked)
+      this.$emit('toggle-switch', !this.isChecked)
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+span {
+  font-family: 'Press Start 2P', courier;
+}
+
 .switch {
   position: relative;
   display: inline-block;
@@ -41,7 +61,7 @@ export default {
     }
 
     &:checked + .slider:before {
-      transform: translateX(22px);
+      transform: translateX(58px);
     }
   }
 

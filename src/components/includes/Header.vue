@@ -12,6 +12,7 @@
           :difficulty-level="difficultyLevel"
           :show-settings="showSettings"
           @toggle-settings="toggleSettings"
+          @update-auto-play="toggleAutoPlay"
           @update-difficulty-level="updateDifficultyLevel"
         />
         <show-hint
@@ -34,7 +35,8 @@ export default {
       category: state => state.category.category,
       showHint: state => state.settings.showHint,
       showSettings: state => state.settings.showSettings,
-      difficultyLevel: state => state.settings.difficultyLevel
+      difficultyLevel: state => state.settings.difficultyLevel,
+      autoPlay: state => state.settings.autoPlay
     }),
     ...mapGetters('continent', ['formattedContinent']),
     iconColor () {
@@ -56,6 +58,9 @@ export default {
     },
     toggleSettings () {
       this.setShowSettings(!this.showSettings)
+    },
+    toggleAutoPlay (value) {
+      this.setAutoPlay(value)
     },
     updateDifficultyLevel (value) {
       this.setDifficultyLevel(value)

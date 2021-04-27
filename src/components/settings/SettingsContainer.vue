@@ -12,6 +12,7 @@
       <settings-options
         :difficulty-level="difficultyLevel"
         @update-difficulty-level="handleDifficultyLevel"
+        @update-auto-play="handleAutoPlay"
       />
     </div>
   </div>
@@ -51,6 +52,9 @@ export default {
     handleDifficultyLevel (value) {
       this.$emit('update-difficulty-level', value)
     },
+    handleAutoPlay (value) {
+      this.$emit('update-auto-play', value)
+    },
     closeDialog () {
       this.handleClick()
     }
@@ -87,7 +91,7 @@ export default {
 
   &.show-settings-container {
     width: 280px;
-    height: 360px;
+    height: 500px;
   }
 
   .cog-icon {
