@@ -25,3 +25,5 @@
 35. Show an animated icon in the level settings buttons
 36. move the height of the settings button on small screens to a clear area
 37. D.C. Washington - check capital
+38. Refactor playgame next-question and setAutoPlay (don't pass a value, toggle will revert the current autoplay)
+39. Display a nicer "next-question" button

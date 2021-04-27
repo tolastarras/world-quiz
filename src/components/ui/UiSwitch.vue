@@ -16,6 +16,10 @@ export default {
     isChecked: false
   }),
   props: {
+    autoPlay: {
+      type: Boolean,
+      required: true
+    },
     leftText: {
       type: String,
       default: 'off'
@@ -24,6 +28,9 @@ export default {
       type: String,
       default: 'on'
     }
+  },
+  mounted () {
+    this.isChecked = this.autoPlay
   },
   methods: {
     handleCheck () {

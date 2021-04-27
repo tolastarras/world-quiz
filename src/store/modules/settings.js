@@ -14,7 +14,7 @@ export default {
       state.showSettings = show
     },
     SET_AUTO_PLAY (state, value) {
-      state.auto = value
+      state.autoPlay = value
     },
     SET_DIFFICULTY_LEVEL (state, value) {
       state.difficultyLevel = value

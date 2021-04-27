@@ -8,7 +8,7 @@
       />
       <hr class="bg-light" />
       <h2 class="title text-white mt-4 pb-4">Automation</h2>
-      <ui-switch @toggle-switch="toggleAutoPlay" />
+      <ui-switch :auto-play="autoPlay" @toggle-switch="toggleAutoPlay" />
     </div>
   </div>
 </template>
@@ -25,6 +25,10 @@ export default {
     ]
   }),
   props: {
+    autoPlay: {
+      type: Boolean,
+      required: true
+    },
     difficultyLevel: {
       type: String,
       required: true

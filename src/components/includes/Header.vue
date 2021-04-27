@@ -9,6 +9,7 @@
         <span class="font-weight-bold text-uppercase">{{ category }}</span> of
         <span class="font-weight-bold text-uppercase">{{ formattedContinent }}</span>
         <settings
+          :auto-play="autoPlay"
           :difficulty-level="difficultyLevel"
           :show-settings="showSettings"
           @toggle-settings="toggleSettings"
@@ -51,7 +52,8 @@ export default {
     ...mapActions({
       setShowHint: 'settings/setShowHint',
       setShowSettings: 'settings/setShowSettings',
-      setDifficultyLevel: 'settings/setDifficultyLevel'
+      setDifficultyLevel: 'settings/setDifficultyLevel',
+      setAutoPlay: 'settings/setAutoPlay'
     }),
     toggleHint () {
       this.setShowHint(!this.showHint)

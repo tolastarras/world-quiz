@@ -10,6 +10,7 @@
         @click="handleClick"
       />
       <settings-options
+        :auto-play="autoPlay"
         :difficulty-level="difficultyLevel"
         @update-difficulty-level="handleDifficultyLevel"
         @update-auto-play="handleAutoPlay"
@@ -24,6 +25,10 @@ import CogIcon from 'vue-material-design-icons/Cog'
 export default {
   name: 'SettingsContainer',
   props: {
+    autoPlay: {
+      type: Boolean,
+      required: true
+    },
     difficultyLevel: {
       type: String,
       required: true

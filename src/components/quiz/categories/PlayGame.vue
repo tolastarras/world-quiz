@@ -19,6 +19,13 @@
         :src="country.flag"
       />
       <ui-button
+        v-show="showNextQuestion"
+        class="next-question"
+        @check-answer="nextQuestion"
+      >
+        Next Question
+      </ui-button>
+      <ui-button
         v-for="country in countries"
         class="d-flex pl-4"
         :class="`${btnClasses} ${btnColor(country)}`"
@@ -50,7 +57,8 @@ export default {
   data: () => ({
     loading: true,
     message: '',
-    userAnswer: ''
+    userAnswer: '',
+    showNextQuestion: false
   }),
   components: {
     UiButton,
@@ -85,6 +93,8 @@ export default {
 
       if (this.autoPlay) {
         this.autoReset()
+      } else {
+        this.showNextQuestion = true
       }
     },
     reset () {
@@ -115,6 +125,14 @@ export default {
       const wrong = this.userAnswer === btnText && this.userAnswer !== this.correctAnswer
 
       return wrong ? 'btn-danger' : (correct ? 'btn-success' : '')
+    },
+    nextQuestion () {
+      console.log('next-question')
+      this.$emit('handle-response')
+
+      // reset values
+      this.reset()
+      this.showNextQuestion = false
     }
   },
   computed: {
@@ -159,9 +177,20 @@ export default {
 .play-game {
   max-width: $max-content-width;
   margin: auto;
+  position: relative;
 
   .spinner {
     min-height: 200px;
+  }
+
+  .next-question {
+    cursor: pointer;
+    position: absolute;
+    top: 32%;
+    left: 0;
+    font-size: 46px !important;
+    color: $white;
+    background: rgba(0, 105, 217, 0.9)
   }
 }
 </style>
