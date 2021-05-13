@@ -1,7 +1,7 @@
 
 <template>
   <div :class="`${thumbnailClasses} mt-0 px-0`">
-    <img :src="src" alt="flag" :class="`${imageClasses}`" />
+    <img :src="src" alt="flag" width="100%" height="100%" :class="`${imageClasses}`" />
   </div>
 </template>
 

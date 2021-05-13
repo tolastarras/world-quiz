@@ -1,4 +1,5 @@
 const path = require('path')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 
 module.exports = {
   // publicPath: '/projects/world-quiz/',
@@ -7,5 +8,12 @@ module.exports = {
       preProcessor: 'scss',
       patterns: [path.resolve(__dirname, './src/styles/global.scss')]
     }
+  },
+  configureWebpack: {
+    plugins: [
+      new BundleAnalyzerPlugin({
+        analyzerMode: 'static'
+      })
+    ]
   }
 }
