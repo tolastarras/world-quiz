@@ -45,8 +45,10 @@ export default {
 <style lang="scss">
 #home {
   font-family: Arial, Helvetica, sans-serif;
-  background-image: url('./assets/mosaic.png');
+  background-image: url('./assets/logo-bg.png');
   background-repeat: repeat;
+  background-color: #eeefff;
+  height: 100vh;
 }
 
 button, a, li {

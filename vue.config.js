@@ -12,7 +12,7 @@ module.exports = {
   configureWebpack: {
     plugins: [
       new BundleAnalyzerPlugin({
-        analyzerMode: 'static'
+        analyzerMode: 'json'
       })
     ]
   }
