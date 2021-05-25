@@ -16,7 +16,6 @@
     "register-service-worker": "^1.7.1",
     "vue": "^2.5.17",
     "vue-material-design-icons": "^4.11.0",
-    "vue-router": "^3.0.1",
     "vue-simple-spinner": "^1.2.10",
     "vuex": "^3.0.1"
   },

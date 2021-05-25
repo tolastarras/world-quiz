@@ -127,7 +127,6 @@ export default {
       return wrong ? 'btn-danger' : (correct ? 'btn-success' : '')
     },
     nextQuestion () {
-      console.log('next-question')
       this.$emit('handle-response')
 
       // reset values

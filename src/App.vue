@@ -1,19 +1,49 @@
 <template>
-  <div id="app">
-    <router-view/>
+  <h1
+    v-if="loading"
+    class="text-secondary text-center mt-5"
+  >
+    Loading...
+  </h1>
+  <div v-else id="home">
+    <header-section />
+    <div>
+      <world-quiz />
+    </div>
+    <footer-section />
   </div>
 </template>
 
 <script>
+import { mapState, mapActions } from 'vuex'
+import { HeaderSection, FooterSection } from '@/components/includes'
+import WorldQuiz from '@/components/quiz/'
+
 export default {
+  name: 'App',
+  components: {
+    HeaderSection,
+    WorldQuiz,
+    FooterSection
+  },
+  computed: {
+    ...mapState({
+      loading: 'game/loading'
+    })
+  },
+  methods: {
+    ...mapActions({
+      init: 'score/init'
+    })
+  },
   created () {
-    this.$store.dispatch('score/init')
+    this.init()
   }
 }
 </script>
 
 <style lang="scss">
-#app {
+#home {
   font-family: Arial, Helvetica, sans-serif;
   background-image: url('./assets/mosaic.png');
   background-repeat: repeat;
